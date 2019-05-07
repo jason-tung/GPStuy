@@ -31,7 +31,6 @@ it's very easy
 Jeffrey named the group gpstuy.
 what does gp stand for
 gps
-gay pride
 omg...
 global positioning system
 u r so epic
