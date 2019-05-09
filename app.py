@@ -6,18 +6,30 @@ from urllib.request import Request, urlopen
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash
 
-from .util import db as db
-
 app = Flask(__name__)
 
 app.secret_key = os.urandom(32)  # key for session
 
 @app.route('/')
 def hello_world():
-    if len(session) != 0:
-        return render_template("home.html", logged=True, user=list(session.items())[0][0])
-    return render_template("landing.html")
+    print(getmap(1))
 
+def getmap(x):
+    with open('maps/floor{0}'.format(x), 'r') as file:
+        data = file.read()
+        return data
+
+def path(loc1,loc2):
+    floor1=loc1[0]
+    floor2=loc2[0]
+    coord1=loc1[1:]
+    coord2=loc2[1:]
+    if floor1 == floor2:
+        getmap(floor1)
+    else:
+        
+        
+    
 if __name__ == "__main__":
     app.debug = True
     app.run()
