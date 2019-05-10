@@ -16,9 +16,18 @@ def hello_world():
 
 def getmap(x):
     with open('maps/floor{0}'.format(x), 'r') as file:
-        data = file.read()
+        map_dict = {}
+        map_dict["map"] = file.read()
+        line_ary = map_dict["map"].split("\n")
+        
         return data
 
+def solvemap(asciimap,loc1,loc2):
+    
+    asciimap.replace(loc1,"S").replace(loc2,"E")
+    
+    
+    
 def path(loc1,loc2):
     floor1=loc1[0]
     floor2=loc2[0]
