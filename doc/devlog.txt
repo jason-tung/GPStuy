@@ -31,3 +31,11 @@ williamL -- 2019-05-12 21:40
 - updated component map to make it less cluttered, more concise
 - added more details to database schema
 ==============================================================
+ivanZ -- 2019-05-13 14:17
+--------------------------------------------------------------
+- updated design doc
+  - removed Parent Accounts and changed Database Scheme to
+    reflect change
+  - added Admin Account and details
+==============================================================
+
