@@ -12,7 +12,7 @@ def getmap(x):
         map_dict["map"] = file.read()
         line_ary = map_dict["map"].split("\n")
         map_dict["stairs"] = line_ary[0]
-        return map_dict["stairs"]
+        return map_dict
 
 
 def pprint(maze):
@@ -26,11 +26,11 @@ def solvemap(asciimap, loc1, loc2):
     testy = asciimap.split
     asciimap = asciimap.replace(loc1, "S").replace(loc2, "E")
     asciimap = "".join(['#' if k.islower() else k for k in asciimap])
-    print(asciimap)
-    print("----")
+    #print(asciimap)
+    #print("----")
     asciimap_rows = asciimap.split('\n')
     mapary = [[k for k in j] for j in asciimap_rows]
-    pprint(mapary)
+    #pprint(mapary)
 
     def solve(row, col):
         nonlocal mapary
@@ -60,16 +60,18 @@ roommap = {"31": "a", "30": "b"}
 
 
 def path(loc1, loc2):
+    loc1,loc2=str(loc1),str(loc2)
     floor1 = loc1[0]
     floor2 = loc2[0]
     coord1 = loc1[1:]
     coord2 = loc2[1:]
     if floor1 == floor2:
-        solvemap(getmap(floor1), roommap[coord1], roommap[coord2])
+        ans = solvemap(getmap(floor1)["map"], roommap[coord1], roommap[coord2])
+        pprint(ans)
     else:
         return
 
-path(631,632)
+path(131,130)
 
 # with open('maps/floor{0}'.format(1), 'r') as file:
 #     map_dict = {}
