@@ -12,7 +12,7 @@ def getmap(x):
         map_dict["map"] = file.read()
         line_ary = map_dict["map"].split("\n")
         map_dict["stairs"] = line_ary[0]
-        return map_dict
+        return map_dict["stairs"]
 
 
 def pprint(maze):
@@ -31,6 +31,7 @@ def solvemap(asciimap, loc1, loc2):
     asciimap_rows = asciimap.split('\n')
     mapary = [[k for k in j] for j in asciimap_rows]
     pprint(mapary)
+
     def solve(row, col):
         nonlocal mapary
         if mapary[row][col] == 'E':
@@ -47,12 +48,15 @@ def solvemap(asciimap, loc1, loc2):
                 else:
                     return solved
         return -1
+
     for x in range(len(mapary)):
         for y in range(len(mapary[x])):
-            if mapary[x][y]=="S":
-                solve(x,y)
-    pprint(mapary)
+            if mapary[x][y] == "S":
+                solve(x, y)
+    return mapary
 
+
+roommap = {"31": "a", "30": "b"}
 
 
 def path(loc1, loc2):
@@ -61,15 +65,16 @@ def path(loc1, loc2):
     coord1 = loc1[1:]
     coord2 = loc2[1:]
     if floor1 == floor2:
-        getmap(floor1)
+        solvemap(getmap(floor1), roommap[coord1], roommap[coord2])
     else:
         return
 
+path(631,632)
 
-with open('maps/floor{0}'.format(1), 'r') as file:
-    map_dict = {}
-    map_dict["map"] = file.read()
-    line_ary = map_dict["map"].split("\n")
-    map_dict["stairs"] = line_ary[0]
-    map_dict["map"] = "".join([k + "\n" for k in line_ary[1:]])[:-1]
-    solvemap(map_dict["map"], 'a', 'b')
+# with open('maps/floor{0}'.format(1), 'r') as file:
+#     map_dict = {}
+#     map_dict["map"] = file.read()
+#     line_ary = map_dict["map"].split("\n")
+#     map_dict["stairs"] = line_ary[0]
+#     map_dict["map"] = "".join([k + "\n" for k in line_ary[1:]])[:-1]
+#     solvemap(map_dict["map"], 'a', 'b')
