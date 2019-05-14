@@ -5,15 +5,13 @@ from urllib.request import Request, urlopen
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash
 
-import math
-
 
 def getmap(x):
     with open('maps/floor{0}'.format(x), 'r') as file:
         map_dict = {}
         map_dict["map"] = file.read()
         line_ary = map_dict["map"].split("\n")
-        map_dict["stairs"] = line_ary[0]
+        map_dict["stairs"] = line_ary[0].split(",")
         map_dict["map"] = "".join([k + "\n" for k in line_ary[1:]])[:-1]
         return map_dict
 
@@ -53,11 +51,12 @@ def solvemap(asciimap, loc1, loc2):
                     return solved
         return -1
 
+    cost = 0
     for x in range(len(mapary)):
         for y in range(len(mapary[x])):
             if mapary[x][y] == "S":
                 cost = solve(x, y, 0)
-    return (mapary,cost)
+    return (mapary, cost)
 
 
 roommap = {"31": "a", "30": "b"}
@@ -67,7 +66,7 @@ stair_cost = {"0": 5, "1": 2, "2": 1, "3": 1}
 def get_sc(a, b, x):
     cost = stair_cost[x]
     a, b = int(a), int(b)
-    return math.abs(a - b) * cost
+    return abs(a - b) * cost
 
 
 def path(loc1, loc2):
@@ -77,7 +76,7 @@ def path(loc1, loc2):
     coord1 = loc1[1:]
     coord2 = loc2[1:]
     if floor1 == floor2:
-        ans = solvemap(getmap(floor1)["map"], roommap[coord1], roommap[coord2])
+        ans = solvemap(getmap(floor1)["map"], roommap[coord1], roommap[coord2])[0]
         pprint(ans[0])
     else:
         map1, map2 = getmap(floor1), getmap(floor2)
@@ -90,14 +89,18 @@ def path(loc1, loc2):
         remap(map1["map"])
         remap(map2["map"])
         # print(map1["map"])
-        least_cost = int("inf")
+        least_cost = float("inf")
         bestpath = ()
         for x in shared_stairs:
             f1path = solvemap(map1["map"], roommap[coord1], x)
             f2path = solvemap(map2["map"], x, roommap[coord2])
             staircost = get_sc(floor1, floor2, x)
-            if staircost == min(stair_cost)
-        return
+            this_cost = staircost + f1path[1] + f2path[1]
+            least_cost = min(this_cost, least_cost)
+            if this_cost <= least_cost:
+                bestpath = (f1path[0], f2path[0])
+        pprint(bestpath[0])
+        pprint(bestpath[1])
 
 
 path(231, 130)
