@@ -14,8 +14,13 @@ def getmap(x):
         map_dict["stairs"] = line_ary[0]
         return map_dict
 
+
 def pprint(maze):
-    print("".join(["".join([j for j in k])+"\n" for k in maze]))
+    print("".join(["".join([j for j in k]) + "\n" for k in maze]))
+
+
+dirary = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+
 
 def solvemap(asciimap, loc1, loc2):
     testy = asciimap.split
@@ -26,7 +31,24 @@ def solvemap(asciimap, loc1, loc2):
     asciimap_rows = asciimap.split('\n')
     mapary = [[k for k in j] for j in asciimap_rows]
     pprint(mapary)
-    
+    def solve(row, col):
+        nonlocal mapary
+        if mapary[row][col] == 'E':
+            return 1
+        for dir in dirary:
+            nrow = row + dir[0]
+            ncol = col + dir[1]
+            if mapary[nrow][ncol] in " E":
+                mapary[row][col] = "@"
+                solved = solve(nrow, ncol)
+                if solved == -1:
+                    mapary[nrow][ncol] = "."
+        return -1
+    for x in range(len(mapary)):
+        for y in range(len(mapary[x])):
+            if mapary[x][y]=="S":
+                solve(x,y)
+    pprint(mapary)
 
 
 def path(loc1, loc2):
