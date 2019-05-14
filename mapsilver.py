@@ -39,16 +39,20 @@ def solvemap(asciimap, loc1, loc2):
             nrow = row + dir[0]
             ncol = col + dir[1]
             if mapary[nrow][ncol] in " E":
-                mapary[row][col] = "@"
+                if mapary[row][col] != "S":
+                    mapary[row][col] = "@"
                 solved = solve(nrow, ncol)
                 if solved == -1:
                     mapary[nrow][ncol] = "."
+                else:
+                    return solved
         return -1
     for x in range(len(mapary)):
         for y in range(len(mapary[x])):
             if mapary[x][y]=="S":
                 solve(x,y)
     pprint(mapary)
+
 
 
 def path(loc1, loc2):
