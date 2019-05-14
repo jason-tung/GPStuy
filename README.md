@@ -1,6 +1,10 @@
 # GPStuy
 Where's Room 251?
 
+to do:
+switch stairs on the 6th floor...
+
+
 Nah
 SUN 10:05 PM
 some things that just popped into my head that we should note:
