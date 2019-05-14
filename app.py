@@ -31,8 +31,6 @@ def solvemap(asciimap,loc1,loc2):
     mapary = [[k for k in j] for j in asciimap_rows]
     print(mapary)
 
-
-    
 def path(loc1,loc2):
     floor1=loc1[0]
     floor2=loc2[0]
@@ -50,8 +48,6 @@ with open('maps/floor{0}'.format(1), 'r') as file:
     map_dict["stairs"]=line_ary[0]
     map_dict["map"] = "".join([k + "\n" for k in line_ary[1:]])[:-1]
     solvemap(map_dict["map"],'a','c')
-
-        
     
 if __name__ == "__main__":
     app.debug = True
