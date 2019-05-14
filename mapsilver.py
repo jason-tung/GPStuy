@@ -21,7 +21,7 @@ def solvemap(asciimap, loc1, loc2):
     asciimap = asciimap.replace(loc1, "S").replace(loc2, "E")
     print(asciimap)
     print("----")
-    asciimap = "".join(['#' if k.islower() else k for k in asciimap])
+    asciimap = "".join([k.upper() if k.islower() else k for k in asciimap])
     asciimap_rows = asciimap.split('\n')
     mapary = [[k for k in j] for j in asciimap_rows]
     print(mapary)
