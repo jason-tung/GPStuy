@@ -12,7 +12,7 @@ app.secret_key = os.urandom(32)  # key for session
 
 @app.route('/')
 def home():
-    return render_template("home.html")
+    return render_template("base.html")
 
 @app.route('/register')
 def register():
