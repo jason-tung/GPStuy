@@ -11,7 +11,19 @@ app = Flask(__name__)
 app.secret_key = os.urandom(32)  # key for session
 
 @app.route('/')
-def hello_world():
+def home():
+    return render_template("home.html")
+
+@app.route('/register')
+def register():
+    return render_template("home.html")
+
+@app.route('/login')
+def login():
+    return render_template("home.html")
+
+@app.route('/submit')
+def submit():
     return render_template("home.html")
 
 if __name__ == "__main__":

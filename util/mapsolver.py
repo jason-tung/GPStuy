@@ -103,7 +103,7 @@ def path(loc1, loc2):
         pprint(bestpath[1])
 
 
-path(231, 130)
+#path(231, 130)
 
 # with open('maps/floor{0}'.format(1), 'r') as file:
 #     map_dict = {}
