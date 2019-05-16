@@ -7,15 +7,11 @@ def setup():
     """Creates the database and adds the user account user_info table."""
     db = sqlite3.connect(DATABASE)
     c = db.cursor()
-    command =  "CREATE TABLE IF NOT EXISTS user_info (\
-                id INTEGER PRIMARY KEY AUTOINCREMENT,\
-                name TEXT NOT NULL,\
-                email TEXT UNIQUE NOT NULL,\
-                guardian_email TEXT UNIQUE NOT NULL,\
-                username TEXT UNIQUE NOT NULL,\
-                password TEXT NOT NULL),\
-                period1 TEXT NOT NULL, period2 TEXT NOT NULL, period3 TEXT NOT NULL, period4 TEXT NOT NULL, period5 TEXT NOT NULL,\
-                period6 TEXT NOT NULL, period7 TEXT NOT NULL, period8 TEXT NOT NULL, period9 TEXT NOT NULL, period10 TEXT NOT NULL)"
+    command =  "CREATE TABLE IF NOT EXISTS user_info (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, guardian_email TEXT UNIQUE NOT NULL,"
+    command += "username TEXT UNIQUE NOT NULL,"
+    command += "password TEXT NOT NULL,"
+    command += "period1 TEXT, period2 TEXT, period3 TEXT, period4 TEXT, period5 TEXT,"
+    command += "period6 TEXT, period7 TEXT, period8 TEXT, period9 TEXT, period10 TEXT)"
     c.execute(command)
     db.commit()
     db.close()

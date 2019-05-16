@@ -1,6 +1,6 @@
 import os, csv, time, sqlite3, json
 from random import shuffle
-from util import mapsolver
+from util import mapsolver, db_create
 
 from urllib.request import Request, urlopen
 
@@ -27,5 +27,6 @@ def submit():
     return render_template("home.html")
 
 if __name__ == "__main__":
+    db_create.setup()
     app.debug = True
     app.run()
