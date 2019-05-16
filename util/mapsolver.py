@@ -17,7 +17,7 @@ def getmap(x):
 
 
 def pprint(maze):
-    print("".join(["".join([j for j in k]) + "\n" for k in maze]))
+    return "".join(["".join([j for j in k]) + "\n" for k in maze])
 
 
 dirary = [[1, 0], [-1, 0], [0, 1], [0, -1]]
@@ -99,8 +99,8 @@ def path(loc1, loc2):
             least_cost = min(this_cost, least_cost)
             if this_cost <= least_cost:
                 bestpath = (f1path[0], f2path[0])
-        pprint(bestpath[0])
-        pprint(bestpath[1])
+        return bestpath
+        
 
 
 #path(231, 130)
