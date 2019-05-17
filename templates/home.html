@@ -40,7 +40,7 @@
         {% for num in range(10) %}
         <tr>
           <th scope="row">{{num+1}}</th>
-          <td>{{periods[num]}}</td>
+          <td id = "{{num+1}}">{{periods[num]}}</td>
         </tr>
         {% endfor %}
       </tbody>
