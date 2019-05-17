@@ -14,7 +14,8 @@ app.secret_key = os.urandom(32)  # key for session
 
 @app.route('/')
 def home():
-    return render_template("home.html")
+    
+    return render_template("home.html", s = session, periods = ["TEST1", "TEST2"])
 
 @app.route("/api_path/", methods=["GET", "POST"])
 def api_path():
