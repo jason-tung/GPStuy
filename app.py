@@ -1,10 +1,8 @@
 import os, csv, time, sqlite3, json
 from random import shuffle
-<<<<<<< HEAD
 from util import mapsolver as ms
-=======
-from util import mapsolver, db_create
->>>>>>> da5184cc2f8defb64ed651fb5f1c72fc81d66592
+from util import db_create
+from json import dumps
 
 from urllib.request import Request, urlopen
 
@@ -18,13 +16,15 @@ app.secret_key = os.urandom(32)  # key for session
 def home():
     return render_template("home.html")
 
-@app.route("/api_path", methods=["GET"])
-def path_api():
-    a= request.args['loc1']
+@app.route("/api_path/", methods=["GET", "POST"])
+def api_path():
+    a = request.args['loc1']
     b = request.args['loc2']
-    return path(a,b)
+    pairpath = ms.path(a, b)
+    #print(pairpath)
+    return dumps(pairpath)
 
-@app.route('/test_api')
+@app.route('/test_api', methods=["GET", "POST"])
 def test_api():
     return render_template("api_test.html")
 
