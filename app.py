@@ -58,7 +58,6 @@ def auth():
     pw = request.form("pw")
     succ = db_create.authenticate(username,pw)
     if succ:
-            session['loggedin']=request.form['username']
             return redirect(url_for('home'))
     else:
         flash("passwords do not match")
