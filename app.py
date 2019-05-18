@@ -30,11 +30,38 @@ def test_api():
 
 @app.route('/register')
 def register():
-    return render_template("home.html")
+    #db_create.add_user
+    return render_template("register.html")
+
+@app.route('/signup')
+def sign_up():
+    name = request.form("name")
+    username = request.form("un")
+    pw = request.form("pw")
+    pwCon = request.form("pwCon")
+    email = request.form("email")
+    guardian_email = request.form("parEmail")
+    if pw == pwCon:
+        db_create.add_user(name, email, guardian_email, username, pw)
+    else:
+        flash('passwords do not match')
+        return redirect(url_for(register))
 
 @app.route('/login')
 def login():
-    return render_template("home.html")
+    return render_template("login.html")
+
+@app.route('/auth')
+def auth():
+    username = request.form("un")
+    pw = request.form("pw")
+    succ = db_create.authenticate(username,pw)
+    if succ:
+            session['loggedin']=request.form['username']
+            return redirect(url_for('home'))
+    else:
+        flash("passwords do not match")
+        return redirect(url_for('login'))
 
 @app.route('/submit')
 def submit():

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}GPStuy{% endblock %}
+{% block content %}
+
+  <form class="form-signin">
+      <br>
+    <b><h1 style = "text-align: center" class="h3 mb-3 font-weight-normal">Please sign in</h1></b>
+    <div class ="container">
+    <label for="un">Email address</label>
+    <input type="username" id="un" class="form-control" placeholder="" required autofocus>
+    <label for="pw">Password</label>
+    <input type="password" id="pw" class="form-control" placeholder="Password" required> <br>
+    <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+</div>
+  </form>
+{% endblock %}
