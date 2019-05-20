@@ -53,15 +53,16 @@ def sign_up():
 def login():
     return render_template("login.html")
 
-@app.route('/auth')
+@app.route('/auth', methods=["GET", "POST"])
 def auth():
-    email = request.form("email")
-    pw = request.form("pw")
+    email = request.form.get("email")
+    pw = request.form.get("pw")
     succ = db_create.authenticate(email,pw)
     if succ:
+            flash("Successfully logged in.")
             return redirect(url_for('home'))
     else:
-        flash("passwords do not match")
+        flash("Password is incorrect.")
         return redirect(url_for('login'))
 
 @app.route('/submit')

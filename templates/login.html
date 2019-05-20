@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 {% block title %}GPStuy{% endblock %}
 {% block content %}
-
+  {% for msg in get_flashed_messages() %}
+  <div class="alert alert-danger" role="alert">
+    {{ msg }}
+  </div>
+  {% endfor %}
   <form class="form-signin" action = "/auth" method="POST">
       <br>
-    <b><h1 style = "text-align: center" class="h3 mb-3 font-weight-normal">Please sign in</h1></b>
+    <b><h1 style = "text-align: center" class="h3 mb-3 font-weight-normal">Please Log In</h1></b>
     <div class ="container">
     <label for="email">Email Address</label>
-    <input type="username" id="email" class="form-control" placeholder="" required autofocus>
+    <input type="username" name="email" class="form-control" placeholder="" required autofocus>
     <label for="pw">Password</label>
-    <input type="password" id="pw" class="form-control" placeholder="Password" required> <br>
+    <input type="password" name="pw" class="form-control" placeholder="Password" required> <br>
     <button class="btn btn-primary btn-block" type="submit">Sign In</button>
     <div class="text-center">Don't have an account? <a href="/register">Sign Up</a></div>
 </div>
