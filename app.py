@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32)  # key for session
 
 @app.route('/')
 def home():
-    
+
     return render_template("home.html", s = session, periods = ["TEST1", "TEST2"])
 
 @app.route("/api_path/", methods=["GET", "POST"])
@@ -44,6 +44,7 @@ def sign_up():
     guardian_email = request.form("parEmail")
     if pw == pwCon:
         db_create.add_user(name, email, guardian_email, username, pw)
+
     else:
         flash('passwords do not match')
         return redirect(url_for(register))
@@ -54,9 +55,9 @@ def login():
 
 @app.route('/auth')
 def auth():
-    username = request.form("un")
+    email = request.form("email")
     pw = request.form("pw")
-    succ = db_create.authenticate(username,pw)
+    succ = db_create.authenticate(email,pw)
     if succ:
             return redirect(url_for('home'))
     else:
