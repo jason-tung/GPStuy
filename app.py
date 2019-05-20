@@ -63,6 +63,17 @@ def sign_up():
 def login():
     return render_template("login.html")
 
+@app.route('/logout')
+def logout():
+    try:
+        session.pop('id')
+        flash("Successfully logged out of your account")
+        return render_template("home.html")
+    except KeyError:
+        flash("You are not logged in yet.")
+        return render_template("home.html")
+
+
 @app.route('/auth', methods=["GET", "POST"])
 def auth():
     email = request.form.get("email")
