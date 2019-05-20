@@ -33,7 +33,7 @@
 
     </div>
   </div>
-  {% if 'id' in s %}
+  {% if name %}
     <table class="table">
       <thead class="thead-dark">
         <tr>
@@ -45,7 +45,11 @@
         {% for num in range(10) %}
         <tr>
           <th scope="row">{{num+1}}</th>
-          <td id = "{{num+1}}">{{periods[num]}}</td>
+          {% if periods %}
+            <td id = "{{num+1}}">{{periods[num]}}</td>
+          {% else %}
+            <td> Placeholder </td>
+          {% endif %}
         </tr>
         {% endfor %}
       </tbody>
