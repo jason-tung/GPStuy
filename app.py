@@ -34,19 +34,20 @@ def register():
     #db_create.add_user
     return render_template("register.html")
 
-@app.route('/signup')
+@app.route('/signup', methods=["GET", "POST"])
 def sign_up():
-    name = request.form("name")
-    pw = request.form("pw")
-    pwCon = request.form("pwCon")
-    email = request.form("email")
-    guardian_email = request.form("parEmail")
+    name = request.form.get("name")
+    pw = request.form.get("pw")
+    pwCon = request.form.get("pwConfirm")
+    email = request.form.get("email")
+    guardian_email = request.form.get("parEmail")
     if pw == pwCon:
         db_create.add_user(name, email, guardian_email, pw)
-
+        flash('Account successfully created!')
+        return redirect(url_for('home'))
     else:
-        flash('passwords do not match')
-        return redirect(url_for(register))
+        flash('Passwords do not match!')
+        return redirect(url_for('register'))
 
 @app.route('/login')
 def login():

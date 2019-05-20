@@ -7,7 +7,7 @@ def setup():
     """Creates the database and adds the user account user_info table."""
     db = sqlite3.connect(DATABASE)
     c = db.cursor()
-    command =  "CREATE TABLE IF NOT EXISTS user_info (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, guardian_email TEXT UNIQUE NOT NULL,"
+    command =  "CREATE TABLE IF NOT EXISTS user_info (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, guardian_email TEXT NOT NULL,"
     command += "password TEXT NOT NULL,"
     command += "period1 TEXT, period2 TEXT, period3 TEXT, period4 TEXT, period5 TEXT,"
     command += "period6 TEXT, period7 TEXT, period8 TEXT, period9 TEXT, period10 TEXT)"
@@ -23,7 +23,7 @@ def add_user(name, email, guardian_email, password):
     password = sha256(password.encode('utf-8')).hexdigest()
     db = sqlite3.connect(DATABASE)
     c = db.cursor()
-    command = "INSERT INTO user_info (name, email, guardian_email, password)VALUES(?,?,?,?,?);"
+    command = "INSERT INTO user_info (name, email, guardian_email, password)VALUES(?,?,?,?);"
     c.execute(command,(name, email, guardian_email, password))
     db.commit()
     db.close()
