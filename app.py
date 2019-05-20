@@ -37,13 +37,12 @@ def register():
 @app.route('/signup')
 def sign_up():
     name = request.form("name")
-    username = request.form("un")
     pw = request.form("pw")
     pwCon = request.form("pwCon")
     email = request.form("email")
     guardian_email = request.form("parEmail")
     if pw == pwCon:
-        db_create.add_user(name, email, guardian_email, username, pw)
+        db_create.add_user(name, email, guardian_email, pw)
 
     else:
         flash('passwords do not match')
