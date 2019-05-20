@@ -15,8 +15,11 @@ app.secret_key = os.urandom(32)  # key for session
 
 @app.route('/')
 def home():
+    try:
+        return render_template("home.html", name = db_create.get_user_by_id(session['id']))
+    except KeyError:
+        return render_template("home.html")
 
-    return render_template("home.html", s = session, periods = ["TEST1", "TEST2"])
 
 @app.route("/api_path/", methods=["GET", "POST"])
 def api_path():
@@ -46,7 +49,7 @@ def sign_up():
             db_create.add_user(name, email, guardian_email, pw)
             session['id'] = db_create.getIDFromEmail(email)
             flash('Account successfully created!')
-            return redirect(url_for('home'))
+            return render_template("home.html", name = db_create.get_user_by_id(session['id']))
 
         except IntegrityError:
             flash('Email already in use. Please try again.')
@@ -68,7 +71,7 @@ def auth():
     if succ:
         session['id'] = db_create.getIDFromEmail(email)
         flash("Successfully logged in.")
-        return redirect(url_for('home'))
+        return render_template("home.html", name = db_create.get_user_by_id(session['id']))
     else:
         flash("Password is incorrect.")
         return redirect(url_for('login'))
