@@ -7,6 +7,7 @@ from json import dumps
 from urllib.request import Request, urlopen
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash
+from sqlite3 import IntegrityError
 
 app = Flask(__name__)
 
@@ -31,7 +32,6 @@ def test_api():
 
 @app.route('/register')
 def register():
-    #db_create.add_user
     return render_template("register.html")
 
 @app.route('/signup', methods=["GET", "POST"])
@@ -42,9 +42,16 @@ def sign_up():
     email = request.form.get("email")
     guardian_email = request.form.get("parEmail")
     if pw == pwCon:
-        db_create.add_user(name, email, guardian_email, pw)
-        flash('Account successfully created!')
-        return redirect(url_for('home'))
+        try:
+            db_create.add_user(name, email, guardian_email, pw)
+            session['id'] = db_create.getIDFromEmail(email)
+            flash('Account successfully created!')
+            return redirect(url_for('home'))
+
+        except IntegrityError:
+            flash('Email already in use. Please try again.')
+            return redirect(url_for('register'))
+
     else:
         flash('Passwords do not match!')
         return redirect(url_for('register'))
@@ -59,8 +66,9 @@ def auth():
     pw = request.form.get("pw")
     succ = db_create.authenticate(email,pw)
     if succ:
-            flash("Successfully logged in.")
-            return redirect(url_for('home'))
+        session['id'] = db_create.getIDFromEmail(email)
+        flash("Successfully logged in.")
+        return redirect(url_for('home'))
     else:
         flash("Password is incorrect.")
         return redirect(url_for('login'))
