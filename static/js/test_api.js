@@ -5,9 +5,57 @@
 //       console.log();
 //     divvy.innerHTML =  response.JSON;
 //   });
+var pic1 = document.getElementById("vimage1");
+var pic2 = document.getElementById("vimage2");
 
 var divvy = document.getElementById("test_div");
 var divvy2 = document.getElementById("test_div2");
+
+function do_stuff(maze,pic) {
+    var dim1 = [maze.length, maze[0].length];
+    pic.setAttribute("height", dim1[0] * 20);
+    pic.setAttribute("width", dim1[1] * 20);
+    for (var i = 0; i < maze.length; i++) {
+        for (var j = 0; j < maze[0].length; j++) {
+            var c = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            // console.log(c);
+            c.setAttribute("height", 20);
+            c.setAttribute("width", 20);
+            c.setAttribute("rx", 5);
+            c.setAttribute("x", 20 * j);
+            c.setAttribute("y", 20 * i);
+            c.setAttribute("stroke", "black");
+            // console.log(maze[i][j]);
+            // if (!maze[i][j]){
+            //     console.log("FDSFDSF")
+            // }
+            switch (maze[i][j]) {
+                case "@":
+                    c.setAttribute("fill", "green");
+                    break;
+                case "#":
+                    c.setAttribute("fill", "tan");
+                    break;
+                case " ":
+                    c.setAttribute("fill", "white");
+                    break;
+                case ".":
+                    c.setAttribute("fill", "white");
+                    break;
+                case "S":
+                    c.setAttribute("fill", "blue");
+                    break;
+                case "E":
+                    c.setAttribute("fill", "purple");
+                    break;
+                default:
+                    c.setAttribute("fill", "red");
+            }
+            pic.appendChild(c)
+        }
+    }
+}
+
 
 var promise = new Promise(function (resolve, reject) {
     $.get("/api_path/", {'loc1': 131, 'loc2': 230})
@@ -42,8 +90,10 @@ promise.then(function (result) {
             // divvy.innerHTML+=floor2[i];
             divvy2.innerHTML += "<br>";
         }
-        divvy.innerHTML.replace(" ", ".");
-        divvy2.innerHTML.replace(" ", ".");
+        // divvy.innerHTML.replace(" ", ".");
+        // divvy2.innerHTML.replace(" ", ".");
+        do_stuff(floor1,pic1);
+        do_stuff(floor2,pic2);
 
     },
 

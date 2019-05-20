@@ -66,3 +66,8 @@ jasonT -- 2019-05-20 13:15
 - making canvas frontend for displaying floor layouts
 ==============================================================
 
+jasonT -- 2019-05-20 18:10
+--------------------------------------------------------------
+- canvas representation of maze is finished but needs labels.
+==============================================================
+
