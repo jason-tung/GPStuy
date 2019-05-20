@@ -42,6 +42,16 @@ def get_email_list():
         user_list.append(user[0])
     return user_list
 
+def get_user_by_id(id):
+    '''Gets name by int(ID)'''
+    db = sqlite3.connect(DATABASE)
+    c = db.cursor()
+    command = "SELECT name FROM user_info WHERE id='{}'".format( id )
+    c.execute(command)
+    name = c.fetchone()
+    db.close()
+    return name
+
 def authenticate(email, pw):
     """Returns True if given email and password match. Otherwise return False."""
     pw = sha256(pw.encode('utf-8')).hexdigest()
