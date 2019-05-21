@@ -108,6 +108,10 @@ def schedule_updater():
         for period in _periods:
             room = request.form.get(period)
             if room != "":
+                try:
+                    room = int(room)
+                except ValueError:
+                    room = "'" + room + "'"
                 db_create.insert_room(id, period, room)
 
 
