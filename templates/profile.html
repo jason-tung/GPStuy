@@ -4,6 +4,7 @@
 <div class="container">
   <br>
   {% if name %}
+  <form action = "/schedule_updater" method="POST">
     <table class="table">
       <thead class="thead-dark">
         <tr>
@@ -15,15 +16,14 @@
         {% for num in range(10) %}
         <tr>
           <th scope="row">{{num+1}}</th>
-          {% if periods %}
-            <td id = "{{num+1}}">{{periods[num]}}</td>
-          {% else %}
-            <td> Placeholder </td>
-          {% endif %}
+            <td><input type="text" name="{{'period' + (num + 1)|string}}" placeholder = "{{periods[num]}}" class="form-control" required autofocus></td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
+    <br>
+    <button class="btn btn-lg btn-dark btn-block" type="submit">Submit Changes</button>
+  </form>
   {% endif %}
 </div>
 
