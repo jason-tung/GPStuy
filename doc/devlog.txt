@@ -76,3 +76,8 @@ ivanZ -- 2019-05-20 19:54
 - fixed login and register
 - add logged in user to navbar
 ==============================================================
+ivanZ -- 2019-05-20 20:40
+--------------------------------------------------------------
+- add profile page which allows users to edit the room numbers
+of their respective rooms
+==============================================================
