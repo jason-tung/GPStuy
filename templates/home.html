@@ -42,10 +42,12 @@
             </thead>
             <tbody>
               {% for num in range(10) %}
-              <tr>
-                <th scope="row">{{num+1}}</th>
-                <td>{{periods[num]}}</td>
-              </tr>
+                {% if periods[num] and periods[num] != 'FREE' %}
+                  <tr>
+                    <th scope="row">{{num+1}}</th>
+                    <td>{{periods[num]}}</td>
+                  </tr>
+                {% endif %}
               {% endfor %}
             </tbody>
           </table>
