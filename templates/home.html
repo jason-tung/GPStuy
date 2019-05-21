@@ -8,49 +8,83 @@
     {{ msg }}
   </div>
   {% endfor %}
-  <div class="jumbotron jumbotron-fluid">
-    <div class="row">
-      <div class="col-1">
-      </div>
-      <div class="col-7">
-        <img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Stuy_building.jpg" alt="Stuyvesant">
-      </div>
-      <div class="col-4">
-        <div class="row">
-          <form action="/search" method="GET" class="form-group">
-            <h3>Start Room</h3>
-            <input class="form-control mr-sm-2" type="text" placeholder="237" name="search" aria-label="Search">
-            <br>
-            <h3>End Room</h3>
-            <input class="form-control mr-sm-2" type="text" placeholder="307" name="search" aria-label="Search">
-            <br>
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="float: right;">Search</button>
-          </form>
 
-        </div>
-      </div>
-
-
-    </div>
-  </div>
   {% if name %}
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Period</th>
-          <th scope="col">Room</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for num in range(10) %}
-        <tr>
-          <th scope="row">{{num+1}}</th>
-          <td>{{periods[num]}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <br>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="row">
+        <div class="col-1">
+        </div>
+
+        <div class="col-4">
+          <img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Stuy_building.jpg" alt="Stuyvesant">
+        </div>
+        <div class="col-2">
+          <div class="row">
+            <form action="/search" method="GET" class="form-group">
+              <h3>Start Room</h3>
+              <input class="form-control mr-sm-2" type="text" placeholder="237" name="search" aria-label="Search">
+              <br>
+              <h3>End Room</h3>
+              <input class="form-control mr-sm-2" type="text" placeholder="307" name="search" aria-label="Search">
+              <br>
+              <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="float: right;">Search</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Period</th>
+                <th scope="col">Room</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for num in range(10) %}
+              <tr>
+                <th scope="row">{{num+1}}</th>
+                <td>{{periods[num]}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+
+        <div class="col-1">
+        </div>
+
+      </div>
+    </div>
+
+
+  {% else %}
+    <div class="jumbotron jumbotron-fluid">
+      <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-7">
+          <img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Stuy_building.jpg" alt="Stuyvesant">
+        </div>
+        <div class="col-4">
+          <div class="row">
+            <form action="/search" method="GET" class="form-group">
+              <h3>Start Room</h3>
+              <input class="form-control mr-sm-2" type="text" placeholder="237" name="search" aria-label="Search">
+              <br>
+              <h3>End Room</h3>
+              <input class="form-control mr-sm-2" type="text" placeholder="307" name="search" aria-label="Search">
+              <br>
+              <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="float: right;">Search</button>
+            </form>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
   {% endif %}
 
 </div>
