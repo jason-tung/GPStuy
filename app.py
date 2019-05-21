@@ -91,6 +91,14 @@ def auth():
 def submit():
     return render_template("home.html")
 
+@app.route('/profile')
+def profile():
+    try:
+        return render_template("profile.html", name = db_create.get_user_by_id(session['id']))
+
+    except KeyError:
+        flash("You are not logged in.")
+        return redirect(url_for("home"))
 if __name__ == "__main__":
     db_create.setup()
     app.debug = True
