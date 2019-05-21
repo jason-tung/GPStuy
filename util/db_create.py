@@ -42,6 +42,21 @@ def get_email_list():
         user_list.append(user[0])
     return user_list
 
+def get_periods_from_id(id):
+    '''Returns a 10-length list of the student's classes (if none given, then None)'''
+    periods = ["period1", "period2", "period3", "period4", "period5", "period6", "period7", "period8", "period9", "period10"]
+    db = sqlite3.connect(DATABASE)
+    c = db.cursor()
+    user_periods = []
+    for period in periods:
+        command = "SELECT {p} FROM user_info WHERE id='{i}'".format(p = period, i = id)
+        c.execute(command)
+        period = c.fetchone()[0]
+        user_periods.append(period)
+
+    db.close()
+    return user_periods
+
 def get_user_by_id(id):
     '''Gets name by int(ID)'''
     db = sqlite3.connect(DATABASE)
