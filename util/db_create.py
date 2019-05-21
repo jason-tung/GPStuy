@@ -62,7 +62,6 @@ def insert_room(id, period, room):
     db = sqlite3.connect(DATABASE)
     c = db.cursor()
     command = "UPDATE user_info SET {p} = {r} WHERE id = {i};".format(p = period, r = room, i = id)
-    print(command)
     c.execute(command)
     db.commit()
     db.close()
