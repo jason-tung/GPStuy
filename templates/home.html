@@ -33,28 +33,6 @@
 
     </div>
   </div>
-  {% if name %}
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Period</th>
-          <th scope="col">Room</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for num in range(10) %}
-        <tr>
-          <th scope="row">{{num+1}}</th>
-          {% if periods %}
-            <td id = "{{num+1}}">{{periods[num]}}</td>
-          {% else %}
-            <td> Placeholder </td>
-          {% endif %}
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% endif %}
 
 </div>
 
