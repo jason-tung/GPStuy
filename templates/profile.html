@@ -2,6 +2,11 @@
 {% block title %}GPStuy{% endblock %}
 {% block content %}
 <div class="container">
+  {% for msg in get_flashed_messages() %}
+  <div class="alert alert-success" role="alert">
+    {{ msg }}
+  </div>
+  {% endfor %}
   <br>
   {% if name %}
   <form action = "/schedule_updater" method="POST">
@@ -16,7 +21,7 @@
         {% for num in range(10) %}
         <tr>
           <th scope="row">{{num+1}}</th>
-            <td><input type="text" name="{{'period' + (num + 1)|string}}" placeholder = "{{periods[num]}}" class="form-control" required autofocus></td>
+            <td><input type="text" name="{{'period' + (num + 1)|string}}" placeholder = "{{periods[num]}}" class="form-control"></td>
         </tr>
         {% endfor %}
       </tbody>

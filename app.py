@@ -94,11 +94,34 @@ def submit():
 @app.route('/profile')
 def profile():
     try:
-        return render_template("profile.html", name = db_create.get_user_by_id(session['id']))
+        student_periods = db_create.get_periods_from_id(session['id'])
+        return render_template("profile.html", name = db_create.get_user_by_id(session['id']), periods = student_periods)
 
     except KeyError:
         flash("You are not logged in.")
         return redirect(url_for("home"))
+
+@app.route('/schedule_updater', methods=["GET", "POST"])
+def schedule_updater():
+    try:
+        id = session['id']
+        _name = db_create.get_user_by_id(id)
+
+        _periods = ["period1", "period2", "period3", "period4", "period5", "period6", "period7", "period8", "period9", "period10"]
+
+        for period in _periods:
+            room = request.form.get(period)
+            if room != "":
+                db_create.insert_room(id, period, room)
+
+
+        student_periods = db_create.get_periods_from_id(id)
+        flash("Successfully updated rooms.")
+        return render_template("profile.html", name = _name, periods = student_periods)
+    except KeyError:
+        flash("You are not logged in.")
+        return redirect(url_for("home"))
+
 if __name__ == "__main__":
     db_create.setup()
     app.debug = True
