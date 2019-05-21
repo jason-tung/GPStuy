@@ -5,6 +5,9 @@ from urllib.request import Request, urlopen
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash
 
+roommap = {"31": "a", "30": "b"}
+stair_cost = {"0": 5, "1": 2, "2": 1, "3": 1}
+
 
 def getmap(x):
     with open('maps/floor{0}'.format(x), 'r') as file:
@@ -17,7 +20,7 @@ def getmap(x):
 
 
 def pprint(maze):
-    print( "".join(["".join([j for j in k]) + "\n" for k in maze]))
+    print("".join(["".join([j for j in k]) + "\n" for k in maze]))
 
 
 dirary = [[1, 0], [-1, 0], [0, 1], [0, -1]]
@@ -59,10 +62,6 @@ def solvemap(asciimap, loc1, loc2):
     return (mapary, cost)
 
 
-roommap = {"31": "a", "30": "b"}
-stair_cost = {"0": 5, "1": 2, "2": 1, "3": 1}
-
-
 def get_sc(a, b, x):
     cost = stair_cost[x]
     a, b = int(a), int(b)
@@ -100,11 +99,9 @@ def path(loc1, loc2):
             if this_cost <= least_cost:
                 bestpath = (f1path[0], f2path[0])
         pprint(bestpath[1])
-        return {"f1":bestpath[0], "f2":bestpath[1]  }
-        
+        return {"f1": bestpath[0], "f2": bestpath[1]}
 
-
-#path(231, 130)
+# path(231, 130)
 
 # with open('maps/floor{0}'.format(1), 'r') as file:
 #     map_dict = {}

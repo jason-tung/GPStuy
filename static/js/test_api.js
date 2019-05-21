@@ -5,13 +5,39 @@
 //       console.log();
 //     divvy.innerHTML =  response.JSON;
 //   });
-var pic1 = document.getElementById("vimage1");
-var pic2 = document.getElementById("vimage2");
 
-var divvy = document.getElementById("test_div");
-var divvy2 = document.getElementById("test_div2");
+var bodstr = `
+    <pre id="test_div" style="font-family: monospace;">
+</pre>
+    <br>-----<br>
+    <pre id="test_div2" style="font-family: monospace;">
 
-function do_stuff(maze,pic) {
+</pre>
+    <svg id="vimage1" height="500" width="500" style="border: 1px solid;"></svg>
+    <br>
+    <svg id="vimage2" height="500" width="500" style="border: 1px solid;"></svg>
+`;
+
+var first_time = true;
+
+var sbtn = document.getElementById("submit");
+
+var rdiv = document.getElementById("replace-here");
+
+s.addEventListener('click', function () {
+    if (first_time) {
+        rdiv.innerHTML = bodstr;
+
+        var pic1 = document.getElementById("vimage1");
+        var pic2 = document.getElementById("vimage2");
+
+        var divvy = document.getElementById("test_div");
+        var divvy2 = document.getElementById("test_div2");
+    }
+
+});
+
+function do_stuff(maze, pic) {
     var dim1 = [maze.length, maze[0].length];
     pic.setAttribute("height", dim1[0] * 20);
     pic.setAttribute("width", dim1[1] * 20);
@@ -92,8 +118,8 @@ promise.then(function (result) {
         }
         // divvy.innerHTML.replace(" ", ".");
         // divvy2.innerHTML.replace(" ", ".");
-        do_stuff(floor1,pic1);
-        do_stuff(floor2,pic2);
+        do_stuff(floor1, pic1);
+        do_stuff(floor2, pic2);
 
     },
 
