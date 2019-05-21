@@ -98,5 +98,3 @@ def getIDFromEmail(email):
     db.close()
 
     return userID
-
-insert_room(1, "period1", "111")
