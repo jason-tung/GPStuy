@@ -18,7 +18,9 @@ app.secret_key = os.urandom(32)  # key for session
 @app.route('/')
 def home():
     try:
-        return render_template("home.html", name = db_create.get_user_by_id(session['id']), periods = db_create.get_periods_from_id(session['id']))
+        type = schedule.get_bell_schedule()
+        current_p = schedule.get_current_period(type if type else "REGULAR")
+        return render_template("home.html", name = db_create.get_user_by_id(session['id']), periods = db_create.get_periods_from_id(session['id']), current_period = current_p)
     except KeyError:
         return render_template("home.html")
 
@@ -84,7 +86,9 @@ def auth():
     if succ:
         session['id'] = db_create.getIDFromEmail(email)
         flash("Successfully logged in.")
-        return render_template("home.html", name = db_create.get_user_by_id(session['id']), periods = db_create.get_periods_from_id(session['id']))
+        type = schedule.get_bell_schedule()
+        current_p = schedule.get_current_period(type if type else "REGULAR")
+        return render_template("home.html", name = db_create.get_user_by_id(session['id']), periods = db_create.get_periods_from_id(session['id']), current_period = current_p)
     else:
         flash("Password is incorrect.")
         return redirect(url_for('login'))

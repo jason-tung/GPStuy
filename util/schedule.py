@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
-bell_schedule = "REGULAR" # can be REGULAR, CONFERENCE, HOMEROOM
-type_of_day = "A" # can be A, B
+bell_schedule = "" # can be REGULAR, CONFERENCE, HOMEROOM
+type_of_day = "" # can be A, B
 day_of_week = "" #can be MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
 days = ["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"]
 REGULAR = []

@@ -51,7 +51,11 @@
                             <tbody>
                             {% for num in range(10) %}
                                 {% if periods[num] and periods[num] != 'FREE' %}
+                                    {% if num == current_period %}
+                                    <tr bgcolor="#FFFF00">
+                                    {% else %}
                                     <tr>
+                                    {% endif %}
                                         <th scope="row">{{ num+1}}</th>
                                         <td>{{ periods[num] }}</td>
                                     </tr>
