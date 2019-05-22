@@ -50,13 +50,18 @@ def get_current_period(type):
 
     return -1 # -1 if it is during the time between periods
 
+def get_current_month():
+    '''Returns month string'''
+    months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    month = datetime.now().month - 1
+    return months[month]
 
 def get_current_weekday():
     '''Returns global day_of_week'''
     global day_of_week
 
     day_of_week = datetime.now().weekday()
-    return day_of_week
+    return days[day_of_week].capitalize()
 
 def set_bell_schedule(type):
     '''Sets global bell_schedule'''

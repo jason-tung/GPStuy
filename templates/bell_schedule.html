@@ -8,7 +8,7 @@
                 {{ msg }}
             </div>
         {% endfor %}
-
+        <h1>Today is {{today}}</h1>
         <div class="form-group">
           <form action="/bell_schedule" method="POST">
             <select name="schedule_choice" id="schedule_choice" onchange="this.form.submit()">
@@ -38,7 +38,11 @@
                   <td>{{periods[num][1]}}</td>
               </tr>
             {% endfor %}
+              {% if current_period == -2 or  current_period == -3 %}
+              <tr bgcolor="#FFFF00">
+              {% else %}
               <tr>
+              {% endif %}
                 <th scope="row">Non-School Time</th>
                   <td>{{buffer[0]}}</td>
                   <td>{{buffer[1]}}</td>
