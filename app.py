@@ -128,7 +128,17 @@ def schedule_updater():
 @app.route('/bell_schedule', methods=["GET", "POST"])
 def bell_schedule():
     choice = request.form.get('schedule_choice')
+    list_periods = schedule.get_list_periods(choice)
+    converted_periods = []
+    for p in list_periods:
+        start_minute = str(p[0].minute) if p[0].minute >= 10 else '0' + str(p[0].minute)
+        end_minute = str(p[1].minute) if p[1].minute >= 10 else '0' + str(p[1].minute)
+        start = str(p[0].hour) + ":" + start_minute + " AM" if p[0].hour/12 <= 1 else str(p[0].hour%12) + ":" + start_minute + " PM"
+        end = str(p[1].hour) + ":" + end_minute + " AM" if p[1].hour/12 <= 1 else str(p[1].hour%12) + ":" + end_minute + " PM"
 
+
+        converted_periods.append(start + " - " + end)
+    print(converted_periods)
 
     try:
         return render_template("bell_schedule.html", name = db_create.get_user_by_id(session['id']), option = choice)
