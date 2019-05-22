@@ -11,24 +11,58 @@ def return_day(num):
     '''Given a num from 0-6 returns Monday-Sunday respectively'''
     return days[num]
 
+def get_current_period(type):
+    '''Returns current period(0-num_period) given type of day'''
+    current_time = datetime.now()
+    current_time = datetime.strptime(str(current_time.hour) + ":" + str(current_time.minute), "%H:%M")
+    day = []
+    type = type.upper()
+
+    if type == "REGULAR":
+        day = REGULAR
+    elif type == "CONFERENCE":
+        day = CONFERENCE
+    elif type == 'HOMEROOM':
+        day = HOMEROOM
+
+    if current_time < day[0][0]:
+        return -2 # -2 if it is before school
+
+    for i in range(len(day)):
+
+        if day[i][0] <= current_time and current_time <= day[i][1]:
+            print(day[i][0], day[i][1], current_time)
+            return i
+
+    if current_time > day[-1][1]:
+        return -3 # -3 if it is after school
+
+    return -1 # -1 if it is during the time between periods
+
+
 def get_current_weekday():
+    '''Returns global day_of_week'''
     global day_of_week
 
     day_of_week = datetime.now().weekday()
     return day_of_week
 
 def set_bell_schedule(type):
+    '''Sets global bell_schedule'''
     global bell_schedule
     bell_schedule = type.upper()
 
 def get_bell_schedule():
+    '''Returns global bell_schedule'''
     return bell_schedule
 
 def set_type_of_day(a_b):
+    '''Sets global type_of_day'''
     global type_of_day
     type_of_day = a_b.upper()
 
 def get_type_of_day():
+    '''Returns global type_of_day'''
     return type_of_day
 
 
@@ -114,6 +148,10 @@ def get_end_time(period, type):
     elif type == 'HOMEROOM':
         return HOMEROOM[period][1]
 
-set_periods(10, "8:00", 41, 5) # Sets Stuy Regular Schedule
-set_periods(10, "8:00", 40, 5) # Sets Stuy Homeroom Schedule
-set_periods(10, "8:00", 37, 5) # Sets Stuy Conference Schedule
+def create_stuy_schedule():
+    set_periods(10, "8:00", 41, 5) # Sets Stuy Regular Schedule
+    set_periods(10, "8:00", 40, 5) # Sets Stuy Homeroom Schedule
+    set_periods(10, "8:00", 37, 5) # Sets Stuy Conference Schedule
+
+create_stuy_schedule()
+print(get_current_period("REGULAR"))
