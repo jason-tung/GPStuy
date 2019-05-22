@@ -2,7 +2,9 @@ import os, csv, time, sqlite3, json
 from random import shuffle
 from util import mapsolver as ms
 from util import db_create
+from util import schedule
 from json import dumps
+from datetime import datetime, timedelta
 
 from urllib.request import Request, urlopen
 
@@ -99,6 +101,7 @@ def profile():
 
 @app.route('/schedule_updater', methods=["GET", "POST"])
 def schedule_updater():
+
     try:
         id = session['id']
         _name = db_create.get_user_by_id(id)
@@ -122,7 +125,18 @@ def schedule_updater():
         flash("You are not logged in.")
         return redirect(url_for("home"))
 
+@app.route('/bell_schedule', methods=["GET", "POST"])
+def bell_schedule():
+    choice = request.form.get('schedule_choice')
+
+
+    try:
+        return render_template("bell_schedule.html", name = db_create.get_user_by_id(session['id']), option = choice)
+    except KeyError:
+        return render_template("bell_schedule.html", option = choice)
+
 if __name__ == "__main__":
     db_create.setup()
     app.debug = True
+    schedule.create_stuy_schedule()
     app.run()
