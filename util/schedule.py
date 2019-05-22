@@ -14,6 +14,8 @@ def return_day(num):
 def num_periods(num, type):
     '''Sets globals REGULAR, CONFERENCE, HOMEROOM to be of length num'''
     global REGULAR, CONFERENCE, HOMEROOM
+    type = type.upper()
+
     if type == "REGULAR":
         REGULAR = [None for i in range(num)]
     elif type == "CONFERENCE":
@@ -24,8 +26,8 @@ def num_periods(num, type):
 def set_period(period, start_time, end_time, type):
     '''Sets period in globals REGULAR, CONFERENCE, HOMEROOM (based on type) based on start_time, end_time, walking_time'''
     global REGULAR, CONFERENCE, HOMEROOM
-
     type = type.upper()
+
     if type == "REGULAR":
         REGULAR[period] = (start_time, end_time)
     elif type == "CONFERENCE":
@@ -71,7 +73,26 @@ def set_periods(num_period, start_time, period_length, walking_time):
             set_period(i, start_time, start_time + time_delta_period, type)
             start_time += time_delta_period + time_delta_walk
 
+def get_start_time(period, type):
+    type = type.upper()
+
+    if type == "REGULAR":
+        return REGULAR[period][0]
+    elif type == "CONFERENCE":
+        return CONFERENCE[period][0]
+    elif type == 'HOMEROOM':
+        return HOMEROOM[period][0]
+
+def get_end_time(period, type):
+    type = type.upper()
+
+    if type == "REGULAR":
+        return REGULAR[period][1]
+    elif type == "CONFERENCE":
+        return CONFERENCE[period][1]
+    elif type == 'HOMEROOM':
+        return HOMEROOM[period][1]
 
 set_periods(10, "8:00", 41, 5) # Sets Stuy Regular Schedule
-set_periods(10, "8:00", 40, 5) # Sets Stuy Regular Schedule
-set_periods(10, "8:00", 37, 5) # Sets Stuy Regular Schedule
+set_periods(10, "8:00", 40, 5) # Sets Stuy Homeroom Schedule
+set_periods(10, "8:00", 37, 5) # Sets Stuy Conference Schedule
