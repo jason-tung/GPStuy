@@ -9,14 +9,34 @@
             </div>
         {% endfor %}
 
+        <div class="form-group">
+          <form action="/bell_schedule" method="POST">
+            <select name="schedule_choice" id="schedule_choice" onchange="this.form.submit()">
+                <option value="REGULAR" {% if option=='REGULAR' %} selected {% endif %}>Regular</option>
+                <option value="HOMEROOM" {% if option=='HOMEROOM' %} selected {% endif %}>Homeroom</option>
+                <option value="CONFERENCE" {% if option=='CONFERENCE' %} selected {% endif %}>Conference</option>
+            </select>
+          </form>
+        </div>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Period</th>
+              <th scope="col">Start Time</th>
+              <th scope="col">End Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for num in range(10) %}
+              <tr>
+                <th scope="row">{{num+1}}</th>
+                  <td>{{periods[num][0]}}</td>
+                  <td>{{periods[num][1]}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
 
-        <form action="/bell_schedule" method="POST">
-          <select name="schedule_choice" id="schedule_choice" onchange="this.form.submit()">
-              <option value="REGULAR" {% if option=='REGULAR' %} selected {% endif %}>Regular</option>
-              <option value="HOMEROOM" {% if option=='HOMEROOM' %} selected {% endif %}>Homeroom</option>
-              <option value="CONFERENCE" {% if option=='CONFERENCE' %} selected {% endif %}>Conference</option>
-          </select>
-        </form>
     </div>
 
 {% endblock %}

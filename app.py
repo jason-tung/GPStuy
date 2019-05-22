@@ -136,14 +136,12 @@ def bell_schedule():
         start = str(p[0].hour) + ":" + start_minute + " AM" if p[0].hour/12 <= 1 else str(p[0].hour%12) + ":" + start_minute + " PM"
         end = str(p[1].hour) + ":" + end_minute + " AM" if p[1].hour/12 <= 1 else str(p[1].hour%12) + ":" + end_minute + " PM"
 
-
-        converted_periods.append(start + " - " + end)
-    print(converted_periods)
+        converted_periods.append((start, end))
 
     try:
-        return render_template("bell_schedule.html", name = db_create.get_user_by_id(session['id']), option = choice)
+        return render_template("bell_schedule.html", name = db_create.get_user_by_id(session['id']), option = choice, periods = converted_periods)
     except KeyError:
-        return render_template("bell_schedule.html", option = choice)
+        return render_template("bell_schedule.html", option = choice, periods = converted_periods)
 
 if __name__ == "__main__":
     db_create.setup()
