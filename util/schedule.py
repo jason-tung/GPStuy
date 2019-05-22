@@ -9,6 +9,7 @@ HOMEROOM = []
 
 def get_list_periods(type):
     '''Returns entire list of periods and times given type'''
+    day = []
     if type == "REGULAR":
         day = REGULAR
     elif type == "CONFERENCE":

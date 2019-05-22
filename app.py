@@ -128,8 +128,12 @@ def schedule_updater():
 @app.route('/bell_schedule', methods=["GET", "POST"])
 def bell_schedule():
     choice = request.form.get('schedule_choice')
+    if not choice:
+        choice = "REGULAR" 
     list_periods = schedule.get_list_periods(choice)
     converted_periods = []
+    current_p = schedule.get_current_period(choice)
+
     for p in list_periods:
         start_minute = str(p[0].minute) if p[0].minute >= 10 else '0' + str(p[0].minute)
         end_minute = str(p[1].minute) if p[1].minute >= 10 else '0' + str(p[1].minute)
@@ -139,9 +143,9 @@ def bell_schedule():
         converted_periods.append((start, end))
 
     try:
-        return render_template("bell_schedule.html", name = db_create.get_user_by_id(session['id']), option = choice, periods = converted_periods)
+        return render_template("bell_schedule.html", name = db_create.get_user_by_id(session['id']), option = choice, periods = converted_periods, current_period = current_p)
     except KeyError:
-        return render_template("bell_schedule.html", option = choice, periods = converted_periods)
+        return render_template("bell_schedule.html", option = choice, periods = converted_periods, current_period = current_p)
 
 if __name__ == "__main__":
     db_create.setup()

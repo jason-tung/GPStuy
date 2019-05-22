@@ -28,7 +28,11 @@
           </thead>
           <tbody>
             {% for num in range(10) %}
+              {% if num == current_period %}
+              <tr bgcolor="#FFFF00">
+              {% else %}
               <tr>
+              {% endif %}
                 <th scope="row">{{num+1}}</th>
                   <td>{{periods[num][0]}}</td>
                   <td>{{periods[num][1]}}</td>
