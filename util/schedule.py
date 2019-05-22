@@ -7,6 +7,16 @@ REGULAR = []
 CONFERENCE = []
 HOMEROOM = []
 
+def get_list_periods(type):
+    '''Returns entire list of periods and times given type'''
+    if type == "REGULAR":
+        day = REGULAR
+    elif type == "CONFERENCE":
+        day = CONFERENCE
+    elif type == 'HOMEROOM':
+        day = HOMEROOM
+    return day
+
 def return_day(num):
     '''Given a num from 0-6 returns Monday-Sunday respectively'''
     return days[num]
@@ -149,9 +159,7 @@ def get_end_time(period, type):
         return HOMEROOM[period][1]
 
 def create_stuy_schedule():
-    set_periods(10, "8:00", 41, 5) # Sets Stuy Regular Schedule
-    set_periods(10, "8:00", 40, 5) # Sets Stuy Homeroom Schedule
-    set_periods(10, "8:00", 37, 5) # Sets Stuy Conference Schedule
-
-create_stuy_schedule()
-print(get_current_period("REGULAR"))
+    if not (REGULAR or HOMEROOM or CONFERENCE):
+        set_periods(10, "8:00", 41, 5) # Sets Stuy Regular Schedule
+        set_periods(10, "8:00", 40, 5) # Sets Stuy Homeroom Schedule
+        set_periods(10, "8:00", 37, 5) # Sets Stuy Conference Schedule
