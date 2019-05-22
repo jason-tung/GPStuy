@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 bell_schedule = "" # can be REGULAR, CONFERENCE, HOMEROOM
 type_of_day = "" # can be A, B
 day_of_week = "" #can be MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
@@ -18,14 +18,31 @@ def num_periods(num):
     CONFERENCE = [None for i in range(num)]
     HOMEROOM = [None for i in range(num)]
 
-def set_period(period, start_time, end_time, walking_time, type):
+def set_period(period, start_time, end_time, type):
     '''Sets period in globals REGULAR, CONFERENCE, HOMEROOM (based on type) based on start_time, end_time, walking_time'''
     global REGULAR, CONFERENCE, HOMEROOM
-    time_format = "%H:%M"
+
     type = type.upper()
     if type == "REGULAR":
-        REGULAR[period] = (datetime.strptime(start_time, time_format), datetime.strptime(end_time, time_format))
+        REGULAR[period] = (start_time, end_time)
     elif type == "CONFERENCE":
-        CONFERENCE[period] = (datetime.strptime(start_time, time_format), datetime.strptime(end_time, time_format))
+        CONFERENCE[period] = (start_time, end_time)
     elif type == 'HOMEROOM':
-        HOMEROOM[period] = (datetime.strptime(start_time, time_format), datetime.strptime(end_time, time_format))
+        HOMEROOM[period] = (start_time, end_time)
+
+def set_periods(num_period, start_time, period_length, walking_time):
+    '''Sets all the periods given start_time of day (HH:MM), period length (minutes), and walking time (minutes) between periods'''
+    time_format = "%H:%M"
+    start_time = datetime.strptime(start_time, time_format)
+    time_delta_period = timedelta(minutes = period_length)
+    time_delta_walk = timedelta(minutes = walking_time)
+    num_periods(num_period)
+    if period_length == 41:
+        type = "REGULAR"
+        for i in range(num_period):
+            set_period(i, start_time, start_time + time_delta_period, type)
+            start_time += time_delta_period + time_delta_walk
+
+set_periods(10, "8:00", 41, 5) # Sets Stuy Regular Schedule
+
+print(REGULAR)
