@@ -43,6 +43,18 @@ def set_periods(num_period, start_time, period_length, walking_time):
             set_period(i, start_time, start_time + time_delta_period, type)
             start_time += time_delta_period + time_delta_walk
 
-set_periods(10, "8:00", 41, 5) # Sets Stuy Regular Schedule
+    if period_length == 40:
+        num_periods(num_period+1)
+        type = "HOMEROOM"
+        for i in range(num_period+1):
+            if i == 3:
+                homeroom_time_delta = timedelta(minutes = 12) # Homeroom is 12 minutes long
+                set_period(i, start_time, start_time + homeroom_time_delta, type)
+                start_time += homeroom_time_delta + time_delta_walk
+                continue
+            set_period(i, start_time, start_time + time_delta_period, type)
+            start_time += time_delta_period + time_delta_walk
 
-print(REGULAR)
+set_periods(10, "8:00", 41, 5) # Sets Stuy Regular Schedule
+set_periods(10, "8:00", 40, 5) # Sets Stuy Regular Schedule
+print(HOMEROOM)
