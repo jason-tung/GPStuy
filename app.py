@@ -142,6 +142,8 @@ def bell_schedule():
 
     t_day = datetime.now()
     t_day = schedule.get_current_weekday() + ", " + schedule.get_current_month() + " " + str(t_day.day) + ", " + str(t_day.year)
+    day_type = schedule.get_bell_schedule() # in the form CONFERENCE/HOMEROOM/REGULAR, A, B
+    day_type = day_type + ", " + schedule.get_type_of_day() if day_type and schedule.get_type_of_day() else day_type
     for p in list_periods:
         start_minute = str(p[0].minute) if p[0].minute >= 10 else '0' + str(p[0].minute)
         end_minute = str(p[1].minute) if p[1].minute >= 10 else '0' + str(p[1].minute)
@@ -151,9 +153,9 @@ def bell_schedule():
         converted_periods.append((start, end))
 
     try:
-        return render_template("bell_schedule.html", name = db_create.get_user_by_id(session['id']), option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day)
+        return render_template("bell_schedule.html", name = db_create.get_user_by_id(session['id']), option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day, day_info = day_type)
     except KeyError:
-        return render_template("bell_schedule.html", option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day)
+        return render_template("bell_schedule.html", option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day, day_info = day_type)
 
 if __name__ == "__main__":
     db_create.setup()

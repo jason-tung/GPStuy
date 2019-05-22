@@ -8,7 +8,7 @@
                 {{ msg }}
             </div>
         {% endfor %}
-        <h1>Today is {{today}}</h1>
+        <h1>Today is {{today}}{% if day_info %} ({{day_info}}) {% endif %}</h1>
         <div class="form-group">
           <form action="/bell_schedule" method="POST">
             <select name="schedule_choice" id="schedule_choice" onchange="this.form.submit()">
