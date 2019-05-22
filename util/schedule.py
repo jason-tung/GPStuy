@@ -11,6 +11,27 @@ def return_day(num):
     '''Given a num from 0-6 returns Monday-Sunday respectively'''
     return days[num]
 
+def get_current_weekday():
+    global day_of_week
+
+    day_of_week = datetime.now().weekday()
+    return day_of_week
+
+def set_bell_schedule(type):
+    global bell_schedule
+    bell_schedule = type.upper()
+
+def get_bell_schedule():
+    return bell_schedule
+
+def set_type_of_day(a_b):
+    global type_of_day
+    type_of_day = a_b.upper()
+
+def get_type_of_day():
+    return type_of_day
+
+
 def num_periods(num, type):
     '''Sets globals REGULAR, CONFERENCE, HOMEROOM to be of length num'''
     global REGULAR, CONFERENCE, HOMEROOM
