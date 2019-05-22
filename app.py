@@ -129,10 +129,16 @@ def schedule_updater():
 def bell_schedule():
     choice = request.form.get('schedule_choice')
     if not choice:
-        choice = "REGULAR" 
+        choice = "REGULAR"
     list_periods = schedule.get_list_periods(choice)
     converted_periods = []
     current_p = schedule.get_current_period(choice)
+
+    start_minute = str(list_periods[-1][1].minute) if list_periods[-1][1].minute >= 10 else '0' + str(list_periods[-1][1].minute)
+    end_minute = str(list_periods[0][0].minute) if list_periods[0][0].minute >= 10 else '0' + str(list_periods[0][0].minute)
+    start = str(list_periods[-1][1].hour) + ":" + start_minute + " AM" if list_periods[-1][1].hour/12 <= 1 else str(list_periods[-1][1].hour%12) + ":" + start_minute + " PM"
+    end = str(list_periods[0][0].hour) + ":" + end_minute + " AM" if list_periods[0][0].hour/12 <= 1 else str(list_periods[0][0].hour%12) + ":" + end_minute + " PM"
+    after_before_school = (start,end)
 
     for p in list_periods:
         start_minute = str(p[0].minute) if p[0].minute >= 10 else '0' + str(p[0].minute)
@@ -143,9 +149,9 @@ def bell_schedule():
         converted_periods.append((start, end))
 
     try:
-        return render_template("bell_schedule.html", name = db_create.get_user_by_id(session['id']), option = choice, periods = converted_periods, current_period = current_p)
+        return render_template("bell_schedule.html", name = db_create.get_user_by_id(session['id']), option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school)
     except KeyError:
-        return render_template("bell_schedule.html", option = choice, periods = converted_periods, current_period = current_p)
+        return render_template("bell_schedule.html", option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school)
 
 if __name__ == "__main__":
     db_create.setup()
