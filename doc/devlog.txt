@@ -118,3 +118,7 @@ ivanZ -- 2019-05-22 16:42
 - finish bell_schedule and add to homepage.
 - may convert global variables in schedule.py to database.
 ==============================================================
+jasonT -- 2019-05-23 12:54
+--------------------------------------------------------------
+- fixed sloppy hoomescreen code
+==============================================================
