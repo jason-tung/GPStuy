@@ -5,7 +5,7 @@ from urllib.request import Request, urlopen
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash
 
-roommap = {"31": "a", "30": "b"}
+roommap = {"31": "a", "30": "b", "29": "c", "28":"d"}
 stair_cost = {"0": 5, "1": 2, "2": 1, "3": 1}
 
 
@@ -76,7 +76,9 @@ def path(loc1, loc2):
     coord2 = loc2[1:]
     if floor1 == floor2:
         ans = solvemap(getmap(floor1)["map"], roommap[coord1], roommap[coord2])[0]
-        pprint(ans[0])
+        return {"f1": ans, "f2": ans}
+
+        # pprint(ans[0])
     else:
         map1, map2 = getmap(floor1), getmap(floor2)
         shared_stairs = [k for k in map1["stairs"] if k in map2["stairs"]]
