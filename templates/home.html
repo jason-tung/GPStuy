@@ -9,37 +9,45 @@
             </div>
         {% endfor %}
 
-        {% if name %}
-            <div class="jumbotron jumbotron-fluid">
-                <div class="row">
-                    <div class="col-1">
-                    </div>
 
-                    <div class="col-4">
-                        <div id="replace-here">
-                            <img class="img-fluid"
-                                 src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Stuy_building.jpg"
-                                 alt="Stuyvesant">
-                        </div>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="row">
+                <div class="col-1">
+                </div>
+                {% if name %}
+                <div class="col-4">
+                {%  else %}
+                 <div class="col-7">
+                {% endif %}
+                    <div id="replace-here">
+                        <img class="img-fluid"
+                             src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Stuy_building.jpg"
+                             alt="Stuyvesant">
                     </div>
-                    <div class="col-2">
-                        <div class="row">
-                            <form action="/search" method="GET" class="form-group">
-                                <h3>Start Room</h3>
-                                <input id = "s1" class="form-control mr-sm-2" type="text" placeholder="237" name="search"
-                                       aria-label="Search">
-                                <br>
-                                <h3>End Room</h3>
-                                <input class="form-control mr-sm-2" type="text" placeholder="307" name="search"
-                                       aria-label="Search">
-                                <br>
-                                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="float: right;">
-                                    Search
-                                </button>
-                            </form>
-                        </div>
+                </div>
+                {% if name %}
+                <div class="col-2">
+                {%  else %}
+                 <div class="col-4">
+                {% endif %}
+                    <div class="row">
+                        <form action="/search" method="GET" class="form-group">
+                            <h3>Start Room</h3>
+                            <input id="s1" class="form-control mr-sm-2" type="text" placeholder="237" name="search"
+                                   aria-label="Search">
+                            <br>
+                            <h3>End Room</h3>
+                            <input class="form-control mr-sm-2" type="text" placeholder="307" name="search"
+                                   aria-label="Search">
+                            <br>
+                            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="float: right;">
+                                Search
+                            </button>
+                        </form>
                     </div>
-
+                </div>
+                {#                HRERE#}
+                {% if name %}
                     <div class="col-4">
                         <table class="table">
                             <thead class="thead-dark">
@@ -52,60 +60,61 @@
                             {% for num in range(10) %}
                                 {% if periods[num] and periods[num] != 'FREE' %}
                                     {% if num == current_period %}
-                                    <tr bgcolor="#FFFF00">
-                                    {% else %}
-                                    <tr>
+                                        <tr bgcolor="#FFFF00">
+                                            {% else %}
+                                        <tr>
                                     {% endif %}
-                                        <th scope="row">{{ num+1}}</th>
-                                        <td>{{ periods[num] }}</td>
-                                    </tr>
+                                <th scope="row">{{ num+1}}</th>
+                                <td>{{ periods[num] }}</td>
+                                </tr>
                                 {% endif %}
                             {% endfor %}
                             </tbody>
                         </table>
                     </div>
+             {% endif %}
 
 
                     <div class="col-1">
                     </div>
 
-                </div>
-            </div>
-
-
-        {% else %}
-            <div class="jumbotron jumbotron-fluid">
-                <div class="row">
-                    <div class="col-1">
                     </div>
-                    <div class="col-7">
-                        <img class="img-fluid"
-                             src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Stuy_building.jpg"
-                             alt="Stuyvesant">
-                    </div>
-                    <div class="col-4">
-                        <div class="row">
-                            <form action="/search" method="GET" class="form-group">
-                                <h3>Start Room</h3>
-                                <input class="form-control mr-sm-2" type="text" placeholder="237" name="search"
-                                       aria-label="Search">
-                                <br>
-                                <h3>End Room</h3>
-                                <input class="form-control mr-sm-2" type="text" placeholder="307" name="search"
-                                       aria-label="Search">
-                                <br>
-                                <button id = "submit" class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="float: right;">
-                                    Search
-                                </button>
-                            </form>
-
-                        </div>
                     </div>
 
 
-                </div>
-            </div>
-        {% endif %}
+{#                {% else %}#}
+{#                    <div class="jumbotron jumbotron-fluid">#}
+{#                        <div class="row">#}
+{#                            <div class="col-1">#}
+{#                            </div>#}
+{#                            <div class="col-7">#}
+{#                                <img class="img-fluid"#}
+{#                                     src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Stuy_building.jpg"#}
+{#                                     alt="Stuyvesant">#}
+{#                            </div>#}
+{#                            <div class="col-4">#}
+{#                                <div class="row">#}
+{#                                    <form action="/search" method="GET" class="form-group">#}
+{#                                        <h3>Start Room</h3>#}
+{#                                        <input class="form-control mr-sm-2" type="text" placeholder="237" name="search"#}
+{#                                               aria-label="Search">#}
+{#                                        <br>#}
+{#                                        <h3>End Room</h3>#}
+{#                                        <input class="form-control mr-sm-2" type="text" placeholder="307" name="search"#}
+{#                                               aria-label="Search">#}
+{#                                        <br>#}
+{#                                        <button id="submit" class="btn btn-outline-dark my-2 my-sm-0" type="submit"#}
+{#                                                style="float: right;">#}
+{#                                            Search#}
+{#                                        </button>#}
+{#                                    </form>#}
+{##}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{##}
+{#                        </div>#}
+{#                    </div>#}
 
     </div>
 
