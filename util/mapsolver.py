@@ -5,17 +5,31 @@ from urllib.request import Request, urlopen
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash
 
-roommap = {"31": "a", "30": "b", "29": "c", "28":"d"}
-stair_cost = {"0": 5, "1": 2, "2": 1, "3": 1}
+# roommap = {"31": "a", "30": "b", "29": "c", "28":"d"}
+roommap = {}
+stair_cost = {"0": 3, "1": 1, "2": 3, "3": 2, "4": 2}
 
 
 def getmap(x):
     with open('maps/floor{0}'.format(x), 'r') as file:
         map_dict = {}
-        map_dict["map"] = file.read()
-        line_ary = map_dict["map"].split("\n")
-        map_dict["stairs"] = line_ary[0].split(",")
-        map_dict["map"] = "".join([k + "\n" for k in line_ary[1:]])[:-1]
+        parts_array = file.read().split("=")
+        parts_array[1] = parts_array[1][1:-1]
+        parts_array[2] = parts_array[2][1:]
+        map_dict["stairs"] = parts_array[0].strip("\n").split(",")
+        # map_dict["map"] = "".join([k + "\n" for k in line_ary[1:]])[:-1]
+        map_dict["map"] = parts_array[1].split("\n")
+        map_dict["map"] = "".join([k + "\n" for k in map_dict["map"]])
+        print("++++++")
+        print(map_dict["map"])
+        print("------")
+        map_dict["rooms"] = parts_array[2].split("\n")
+        # print("DFSFDSFDSFDSF")
+        # print(parts_array)
+        for x in map_dict["rooms"]:
+            pair = x.split(",")
+            # print(x,pair)
+            roommap[pair[1]] = pair[0]
         return map_dict
 
 
@@ -63,6 +77,7 @@ def solvemap(asciimap, loc1, loc2):
 
 
 def get_sc(a, b, x):
+    # print(a,b,x)
     cost = stair_cost[x]
     a, b = int(a), int(b)
     return abs(a - b) * cost
