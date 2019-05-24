@@ -94,7 +94,9 @@ promise.then(function (result) {
         // divvy2.innerHTML.replace(" ", ".");
         do_stuff(floor1,pic1);
         do_stuff(floor2,pic2);
-        gen
+        console.log('gen is being called now');
+        gendirections(floor1,false);
+        // gendirections(floor2);
     },
 
     function (err) {
@@ -102,19 +104,74 @@ promise.then(function (result) {
     }
 );
 
-function gendirections(map) {
-    var directions = [(0,1),(-1,0),(0,-1),(1,0)];
-    var map = document.getElementById("test_div");
-    console.log(map)
-    var res = map.split("</br>")
-// function dirgen(map){
+// function gendirections(map,stairs) {
+//     var instruct;
+//     if (stairs)
+//         instruct = ['Exit the stairs'];
+//     else 
+//         instruct = ['Exit the room'];
+//     console.log("hi")
+//     var curX;
+//     var curY; 
+//     var curDir;
+//     var steps; 
 
-// }
-// mapArr = [[cor for cor in row] in map.split('<br>')]
-//     cur_xcor = []
-// 	for dir in directions:
-// 		#keep going in correct way 
-//         #once you hit a ! stop and then loop through directions again
-//         #first check if it is stairs or dest; if it is you have arrived/ take the stairs 
-    
-};
+//     for (var i = 0; i < map.length; i++)
+//     {
+//         for (var j = 0; j < map[0].length; j++)
+//         {
+//             if (map[i][j] == 'S')
+//             {
+//                 curX = i;
+//                 curY = j ;
+//             }
+//         }
+//     }
+   
+//     var directions = [[0,1],[-1,0],[0,-1],[1,0]];
+//     for(var i = 0; i< 4; i++){
+//         var nextX = curX + directions[i][0]
+//         var nextY = curY + directions[i][1]
+//         console.log(nextX,nextY)
+//         if (map[nextX][nextY] == '@'){
+//             curDir = i;
+//             curX = nextX;
+//             curY = nextY;
+//         }
+//     }
+//     //while(map[curX+directions[curDir][0]][curY+directions[curDir][1]] != 'E' ){
+//         while (map[curX+directions[curDir][0]][curY+directions[curDir][1]] == '@' );
+//         {
+//             console.log(map[curX+directions[curDir][0]][curY+directions[curDir][1]] )
+//             curX += directions[curDir][0];
+//             curY += directions[curDir][1];
+//             steps++; 
+//         } 
+
+//         instruct.push("Move forward ${steps} steps")
+//         console.log(instruct)
+//         steps = 0;
+        
+//         if(directions[(curDir+1)%4 ] == '@'){
+//             instruct.push('Turn Left')
+//             curDir++;
+//             curDir %= 4;
+//         }
+//         else{
+//             instruct.push('Turn Right')
+//             if (curDir = 0){
+//                 curDir = 3;
+//             }
+//             else{
+//                 curDir--;
+//             }
+//         }
+//     }
+//     if(stairs){
+//         instruct.push('You have arrived at your destination.')
+//     }
+//     else{
+//         instruct.push('Take the stairs to the correct floor')
+//    // }
+//     console.log(instruct)
+// };
