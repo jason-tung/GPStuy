@@ -104,74 +104,84 @@ promise.then(function (result) {
     }
 );
 
-// function gendirections(map,stairs) {
-//     var instruct;
-//     if (stairs)
-//         instruct = ['Exit the stairs'];
-//     else 
-//         instruct = ['Exit the room'];
-//     console.log("hi")
-//     var curX;
-//     var curY; 
-//     var curDir;
-//     var steps; 
+function gendirections(map,stairs) {
+    var instruct;
+    if (stairs)
+        instruct = ['Exit the stairs'];
+    else 
+        instruct = ['Exit the room'];
+    console.log("hi")
+    var curX;
+    var curY; 
+    var curDir;
+    var steps =0; 
 
-//     for (var i = 0; i < map.length; i++)
-//     {
-//         for (var j = 0; j < map[0].length; j++)
-//         {
-//             if (map[i][j] == 'S')
-//             {
-//                 curX = i;
-//                 curY = j ;
-//             }
-//         }
-//     }
+    for (var i = 0; i < map.length; i++)
+    {
+        for (var j = 0; j < map[0].length; j++)
+        {
+            if (map[i][j] == 'S')
+            {
+                curX = i;
+                curY = j ;
+            }
+        }
+    }
+    console.log(curX,curY);
    
-//     var directions = [[0,1],[-1,0],[0,-1],[1,0]];
-//     for(var i = 0; i< 4; i++){
-//         var nextX = curX + directions[i][0]
-//         var nextY = curY + directions[i][1]
-//         console.log(nextX,nextY)
-//         if (map[nextX][nextY] == '@'){
-//             curDir = i;
-//             curX = nextX;
-//             curY = nextY;
-//         }
-//     }
-//     //while(map[curX+directions[curDir][0]][curY+directions[curDir][1]] != 'E' ){
-//         while (map[curX+directions[curDir][0]][curY+directions[curDir][1]] == '@' );
-//         {
-//             console.log(map[curX+directions[curDir][0]][curY+directions[curDir][1]] )
-//             curX += directions[curDir][0];
-//             curY += directions[curDir][1];
-//             steps++; 
-//         } 
-
-//         instruct.push("Move forward ${steps} steps")
-//         console.log(instruct)
-//         steps = 0;
+    var directions = [[0,1],[-1,0],[0,-1],[1,0]];
+    for(var i = 0; i< 4; i++){
+        var nextX = curX + directions[i][0]
+        var nextY = curY + directions[i][1]
+        console.log(nextX,nextY)
+        if (map[nextX][nextY] == '@'){
+            curDir = i;
+            curX = nextX;
+            curY = nextY;
+            steps++;
+        }
+    }
+    console.log(curDir);
+    while(map[curX+directions[curDir][0]][curY+directions[curDir][1]] != 'E' ){
+        while (map[curX+directions[curDir][0]][curY+directions[curDir][1]] == "@")
+        {
+            console.log('while loop started')
+            // for(var i = 0; i <4;i++){
+            console.log(map[curX+directions[curDir][0]][curY+directions[curDir][1]]);
+            console.log(map[curX+directions[curDir][0]][curY+directions[curDir][1]] == "@");
+            curX += directions[curDir][0];
+            curY += directions[curDir][1];
+            console.log(curX,curY);
+            steps++; 
+        } 
         
-//         if(directions[(curDir+1)%4 ] == '@'){
-//             instruct.push('Turn Left')
-//             curDir++;
-//             curDir %= 4;
-//         }
-//         else{
-//             instruct.push('Turn Right')
-//             if (curDir = 0){
-//                 curDir = 3;
-//             }
-//             else{
-//                 curDir--;
-//             }
-//         }
-//     }
-//     if(stairs){
-//         instruct.push('You have arrived at your destination.')
-//     }
-//     else{
-//         instruct.push('Take the stairs to the correct floor')
-//    // }
-//     console.log(instruct)
-// };
+        console.log('hi')
+        instruct.push("Move forward " +steps+ " steps");
+        console.log(instruct);
+        console.log(steps);
+        steps = 0;
+        
+        if(directions[(curDir+1)%4 ] == '@'){
+            instruct.push('Turn Left')
+            curDir++;
+            curDir %= 4;
+        }
+        else{
+            instruct.push('Turn Right')
+            if (curDir == 0){
+                curDir = 3;
+            }
+            else{
+                curDir--;
+            }
+        }
+    }
+    if(stairs){
+        instruct.push('You have arrived at your destination.')
+    }
+    else{
+        instruct.push('Take the stairs to the correct floor')
+        }
+
+    console.log(instruct)
+};
