@@ -39,16 +39,20 @@ def get_current_period(type):
     if current_time < day[0][0]:
         return -2 # -2 if it is before school
 
+    in_btw_period = 0
     for i in range(len(day)):
 
         if day[i][0] <= current_time and current_time <= day[i][1]:
-            print(day[i][0], day[i][1], current_time)
+            #print(day[i][0], day[i][1], current_time)
             return i
+        elif day[i][1] <= current_time:
+            in_btw_period = i
+
 
     if current_time > day[-1][1]:
         return -3 # -3 if it is after school
 
-    return -1 # -1 if it is during the time between periods
+    return "-1" + str(in_btw_period) # -1 if it is during the time between periods
 
 def get_current_month():
     '''Returns month string'''
