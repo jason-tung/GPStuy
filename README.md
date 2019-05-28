@@ -59,19 +59,7 @@ pip3 install -r requirements.txt
 pip install -r requirements.txt
 ```
 
-6a. edit/make file named `keys.json`.
-
-6b. fill the `keys.json` file with your corresponding api keys in the following format (the api keys i filled out are made up):
-```
-{
-"newsapi":"xxxxxxxxx",
-"darksky":"xxxxxxxxx",
-"calendarindex":"xxxxxxxxx",
-"nasa":"xxxxxxxxx"
-}
-```
-
-7. run the app.py with python3 (MUST BE PY3!!!!)
+6. run the app.py with python3 (MUST BE PY3!!!!)
 
 **python 3.7**
 ```
@@ -83,6 +71,6 @@ python3 app.py
 python app.py
 ```
 
-8. go to localhost 127.0.0.1:5000 on any browser
+7. go to localhost 127.0.0.1:5000 on any browser
 
    http://127.0.0.1:5000/
