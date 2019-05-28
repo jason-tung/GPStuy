@@ -12,6 +12,7 @@ stair_cost = {"0": 3, "1": 1, "2": 3, "3": 2, "4": 2}
 
 def getmap(x):
     with open('maps/floor{0}'.format(x), 'r') as file:
+        global roommap
         map_dict = {}
         parts_array = file.read().split("=")
         parts_array[1] = parts_array[1][1:-1]
@@ -19,7 +20,7 @@ def getmap(x):
         map_dict["stairs"] = parts_array[0].strip("\n").split(",")
         # map_dict["map"] = "".join([k + "\n" for k in line_ary[1:]])[:-1]
         map_dict["map"] = parts_array[1].split("\n")
-        map_dict["map"] = "".join([k + "\n" for k in map_dict["map"]])
+        map_dict["map"] = "".join([k + "\n" for k in map_dict["map"]])[:-1]
         print("++++++")
         print(map_dict["map"])
         print("------")
@@ -30,6 +31,7 @@ def getmap(x):
             pair = x.split(",")
             # print(x,pair)
             roommap[pair[1]] = pair[0]
+        print( roommap )
         return map_dict
 
 
@@ -41,6 +43,7 @@ dirary = [[1, 0], [-1, 0], [0, 1], [0, -1]]
 
 
 def solvemap(asciimap, loc1, loc2):
+    global roommap
     testy = asciimap.split
     asciimap = asciimap.replace(loc1, "S").replace(loc2, "E")
     asciimap = "".join(['#' if k.islower() else k for k in asciimap])
@@ -84,6 +87,7 @@ def get_sc(a, b, x):
 
 
 def path(loc1, loc2):
+    global roommap
     loc1, loc2 = str(loc1), str(loc2)
     floor1 = loc1[0]
     floor2 = loc2[0]
