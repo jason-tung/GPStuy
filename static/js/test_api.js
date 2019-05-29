@@ -58,7 +58,7 @@ function do_stuff(maze,pic) {
 
 
 var promise = new Promise(function (resolve, reject) {
-    $.get("/api_path/", {'loc1': 131, 'loc2': 230})
+    $.get("/api_path/", {'loc1': 101, 'loc2': 202})
         .done(function (response) {
             resolve(response);
         })
@@ -95,7 +95,8 @@ promise.then(function (result) {
         do_stuff(floor1,pic1);
         do_stuff(floor2,pic2);
         console.log('gen is being called now');
-        gendirections(floor1,false);
+        instructions = gendirections(floor1,false);
+        createTable(instructions);
         // gendirections(floor2);
     },
 
@@ -184,4 +185,25 @@ function gendirections(map,stairs) {
         }
 
     console.log(instruct)
+    return instruct;
 };
+
+function createTable(dt) {
+    var table = document.createElement('table');
+    var tableBody = document.createElement('tbody');
+  
+    for(var i = 0; i < dt.length; i++){
+        var row = document.createElement('tr');
+        var ind = document.createElement('td');
+        ind.appendChild(document.createTextNode(i+1));
+        row.appendChild(ind);
+        var dir = document.createElement('td');
+        dir.appendChild(document.createTextNode(dt[i]));
+        row.appendChild(dir);
+        tableBody.appendChild(row);
+    }
+  
+    table.appendChild(tableBody);
+    document.body.appendChild(table);
+  }
+  
