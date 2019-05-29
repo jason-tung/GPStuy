@@ -147,3 +147,7 @@ ivanZ -- 2019-05-28 13:12
 - start admin admin feature
 - add walking time feature to schedule
 ==============================================================
+jasonT -- 2019-05-29 12:55
+--------------------------------------------------------------
+- implemented run mins maps. need to make it so if it's two of the same floor it will only show once
+==============================================================

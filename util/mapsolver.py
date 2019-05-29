@@ -11,27 +11,31 @@ stair_cost = {"0": 3, "1": 1, "2": 3, "3": 2, "4": 2}
 
 
 def getmap(x):
-    with open('maps/floor{0}'.format(x), 'r') as file:
+    with open('maps/william/floor' + ('0' if int(x) < 10 else '') + '{0}'.format(x), 'r') as file:
         global roommap
         map_dict = {}
-        parts_array = file.read().split("=")
+        parts_array = file.read().strip().split("=")
         parts_array[1] = parts_array[1][1:-1]
         parts_array[2] = parts_array[2][1:]
         map_dict["stairs"] = parts_array[0].strip("\n").split(",")
         # map_dict["map"] = "".join([k + "\n" for k in line_ary[1:]])[:-1]
         map_dict["map"] = parts_array[1].split("\n")
         map_dict["map"] = "".join([k + "\n" for k in map_dict["map"]])[:-1]
-        print("++++++")
-        print(map_dict["map"])
-        print("------")
+        # print("++++++")
+        # print(map_dict["map"])
+        # print("------")
         map_dict["rooms"] = parts_array[2].split("\n")
         # print("DFSFDSFDSFDSF")
         # print(parts_array)
         for x in map_dict["rooms"]:
             pair = x.split(",")
             # print(x,pair)
+            print("+_+_+_")
+            print(roommap)
+            print(pair[1],pair[0])
+            print("--__--_+_+_")
             roommap[pair[1]] = pair[0]
-        print( roommap )
+        # print(roommap)
         return map_dict
 
 
