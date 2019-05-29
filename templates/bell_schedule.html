@@ -28,6 +28,13 @@
           </thead>
           <tbody>
             {% for num in range(10) %}
+              {% if "-1" + num|string == current_period %}
+              <tr bgcolor="#FF0000">
+                <th scope="row">{{num+1}} Walking Time</th>
+                  <td></td>
+                  <td></td>
+              </tr>
+              {% endif %}
               {% if num == current_period %}
               <tr bgcolor="#FFFF00">
               {% else %}

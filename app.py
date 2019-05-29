@@ -161,6 +161,11 @@ def bell_schedule():
     except KeyError:
         return render_template("bell_schedule.html", option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day, day_info = day_type)
 
+# @app.route('/admin_features')
+# def admin_features(): #Send mass emails, upload layouts of schools, see list of students, edit students schedules (i.e. change room number and teacher name)
+#     return redirect(url_for("home"))
+
+
 if __name__ == "__main__":
     db_create.setup()
     app.debug = True
