@@ -92,8 +92,40 @@ $ cd <app>
 
 4. Create wsgi file
 
-`$ touch <app>.wsgi`
+```
+$ touch <app>.wsgi
+```
 
 5. Clone via https
 
-``
+`$ git clone https://github.com/WilliamLu0211/GPStuy.git`
+
+6. Change permissions
+
+```
+$ chgrp -R www-data <app>
+$ chmod -R g+w <app>
+```
+
+7. rename `app.py` and install requirements
+
+```
+$ cd <app>
+$ mv app.py __init__.py
+$ pip3 install -r requirements.txt
+```
+
+8. Enable Site
+
+```
+$ cd ~/../../etc/apache2/sites-enabled/
+$ touch <app>.conf
+$ a2ensite <app>
+```
+
+9. Reload and restart apache2
+
+```
+service apache2 reload
+service apache2 restart
+```
