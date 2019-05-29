@@ -191,7 +191,7 @@ function gendirections(map,stairs) {
 function createTable(dt) {
     var table = document.createElement('table');
     var tableBody = document.createElement('tbody');
-  
+    var head  = document.createElement('thead');
     for(var i = 0; i < dt.length; i++){
         var row = document.createElement('tr');
         var ind = document.createElement('td');
@@ -202,8 +202,9 @@ function createTable(dt) {
         row.appendChild(dir);
         tableBody.appendChild(row);
     }
-  
+    
     table.appendChild(tableBody);
+    table.setAttribute("class", "table");
     document.body.appendChild(table);
   }
   
