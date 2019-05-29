@@ -75,4 +75,25 @@ python app.py
 
    http://127.0.0.1:5000/
 
-**Apache2 Guide**
+## Apache2 Launch Instructions
+1. SSH into droplet
+
+```$ ssh <username>@<ip>```
+
+2. Go to www and create a directory named after your app
+```
+$ cd ../../var/www
+$ mkdir <app>
+$ cd <app>
+```
+3. Switch to root
+
+`$ sudo su`
+
+4. Create wsgi file
+
+`$ touch <app>.wsgi`
+
+5. Clone via https
+
+``
