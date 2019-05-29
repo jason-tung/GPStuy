@@ -88,7 +88,9 @@ $ cd <app>
 ```
 3. Switch to root
 
-`$ sudo su`
+```
+$ sudo su
+```
 
 4. Create wsgi file
 
@@ -98,7 +100,9 @@ $ touch <app>.wsgi
 
 5. Clone via https
 
-`$ git clone https://github.com/WilliamLu0211/GPStuy.git`
+```
+$ git clone https://github.com/WilliamLu0211/GPStuy.git
+```
 
 6. Change permissions
 
