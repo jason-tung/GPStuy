@@ -91,40 +91,44 @@ def get_sc(a, b, x):
 
 
 def path(loc1, loc2):
-    global roommap
-    loc1, loc2 = str(loc1), str(loc2)
-    floor1 = loc1[0]
-    floor2 = loc2[0]
-    coord1 = loc1[1:]
-    coord2 = loc2[1:]
-    if floor1 == floor2:
-        ans = solvemap(getmap(floor1)["map"], roommap[coord1], roommap[coord2])[0]
-        return {"f1": ans, "f2": ans}
+    try:
+        global roommap
+        loc1, loc2 = str(loc1), str(loc2)
+        floor1 = loc1[0]
+        # print("floor2: " )
+        floor2 = loc2[0]
+        coord1 = loc1[1:]
+        coord2 = loc2[1:]
+        if floor1 == floor2:
+            ans = solvemap(getmap(floor1)["map"], roommap[coord1], roommap[coord2])[0]
+            return {"f1": ans, "f2": ans}
 
-        # pprint(ans[0])
-    else:
-        map1, map2 = getmap(floor1), getmap(floor2)
-        shared_stairs = [k for k in map1["stairs"] if k in map2["stairs"]]
+            # pprint(ans[0])
+        else:
+            map1, map2 = getmap(floor1), getmap(floor2)
+            shared_stairs = [k for k in map1["stairs"] if k in map2["stairs"]]
 
-        def remap(map):
-            nonlocal shared_stairs
-            return "".join(['#' if l.isnumeric() and l not in shared_stairs else l for l in map])
+            def remap(map):
+                nonlocal shared_stairs
+                return "".join(['#' if l.isnumeric() and l not in shared_stairs else l for l in map])
 
-        remap(map1["map"])
-        remap(map2["map"])
-        # print(map1["map"])
-        least_cost = float("inf")
-        bestpath = ()
-        for x in shared_stairs:
-            f1path = solvemap(map1["map"], roommap[coord1], x)
-            f2path = solvemap(map2["map"], x, roommap[coord2])
-            staircost = get_sc(floor1, floor2, x)
-            this_cost = staircost + f1path[1] + f2path[1]
-            least_cost = min(this_cost, least_cost)
-            if this_cost <= least_cost:
-                bestpath = (f1path[0], f2path[0])
-        pprint(bestpath[1])
-        return {"f1": bestpath[0], "f2": bestpath[1]}
+            remap(map1["map"])
+            remap(map2["map"])
+            # print(map1["map"])
+            least_cost = float("inf")
+            bestpath = ()
+            for x in shared_stairs:
+                f1path = solvemap(map1["map"], roommap[coord1], x)
+                f2path = solvemap(map2["map"], x, roommap[coord2])
+                staircost = get_sc(floor1, floor2, x)
+                this_cost = staircost + f1path[1] + f2path[1]
+                least_cost = min(this_cost, least_cost)
+                if this_cost <= least_cost:
+                    bestpath = (f1path[0], f2path[0])
+            pprint(bestpath[1])
+            return {"f1": bestpath[0], "f2": bestpath[1]}
+    except:
+        return "poopy"
 
 # path(231, 130)
 

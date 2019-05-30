@@ -27,6 +27,8 @@ sbtn.addEventListener('click', function () {
     }
     ;
     var s1 = document.getElementById("s1").value;
+
+        console.log("s1: " + s1);
     var s2 = document.getElementById("s2").value;
     find(s1, s2);
 
@@ -47,14 +49,6 @@ function do_stuff(maze, pic) {
             c.setAttribute("x", 10 * j);
             c.setAttribute("y", 10 * i);
             c.setAttribute("stroke", "black");
-            if (same_floor) {
-                c.setAttribute("height", 20);
-                c.setAttribute("width", 10);
-                c.setAttribute("rx", 5);
-                c.setAttribute("x", 10 * j);
-                c.setAttribute("y", 20 * i);
-                c.setAttribute("stroke", "black");
-            }
             // console.log(maze[i][j]);
             // if (!maze[i][j]){
             //     console.log("FDSFDSF")
@@ -84,6 +78,10 @@ function do_stuff(maze, pic) {
             pic.appendChild(c)
         }
     }
+    if (same_floor){
+        var pic2 = document.getElementById("vimage2");
+        pic2.remove();
+    }
 }
 
 function find(a, b) {
@@ -102,6 +100,17 @@ function find(a, b) {
     });
 
     promise.then(function (result) {
+        var s1 = document.getElementById("s1").value;
+        var s2 = document.getElementById("s2").value;
+            if (result == '"poopy"'){
+                pic1.remove();
+                pic2.remove();
+                console.log("fail!!!!!!!!!!!!!");
+                rdiv.innerHTML = "hey invalid room(s)";
+                return;
+            }
+            console.log("DFSDKJFNDJKSNFKJDSJFKDSJKFDJSF");
+            console.log(result);
             var maze = JSON.parse(result);
             var floor1 = maze['f1'];
             var floor2 = maze['f2'];
@@ -110,8 +119,7 @@ function find(a, b) {
             console.log(floor1);
             console.log(floor2);
 
-    var s1 = document.getElementById("s1").value;
-    var s2 = document.getElementById("s2").value;
+
             same_floor = s1.substring(0,s1.length-2) == s2.substring(0,s2.length-2);
 
             // for (var i = 0; i < floor1.length; i++) {

@@ -31,7 +31,10 @@ def api_path():
     b = request.args['loc2']
     pairpath = ms.path(a, b)
     #print(pairpath)
-    return dumps(pairpath)
+    try:
+        return dumps(pairpath)
+    except:
+        return "poopy"
 
 @app.route('/test_api', methods=["GET", "POST"])
 def test_api():
