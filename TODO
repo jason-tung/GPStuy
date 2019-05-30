@@ -1,0 +1,24 @@
+■ Directions will be imaged on 2D map layout of Stuy
+■ Directions will be given in terms of left/right turns, distance to walk
+Map estimated travel time between classes
+○ Allow users to adjust their travel times (i.e. how fast/slow they walk)
+■ Use these travel times to give users more accurate results
+○ 3D imaging of Stuy (i.e. Google Maps Street View)
+○ Add detailed descriptions and images for each Stuy room (i.e. department,
+courses taught)
+○ Combine Mr. Brook's Schedule Choice with webpage so students know what
+period it is
+■ i.e. account for A or B day schedules
+○ Implement Parent accounts for PTC
+■ Parent accounts can be linked to student accounts
+○ Add directions to restaurants by Stuy
+○ Making the website aesthetic to make the site user-friendly
+○ Add accounts so that parents can inherit child's schedule
+○ Add 3D street view-esque imaging of Stuy
+○ Implement schedules and period timing (i.e. Brook's Schedule Choice) with website
+○ Add direction functionality to restaurants by Stuy
+○ Add system for admins/users (via crowdsource) to add warnings (i.e. room changes, congested stairwells, broken escalators)
+○ Add descriptions and images for each room
+Admin Accounts (Ivan)
+b. Allow admins to upload layouts of schools
+c. Admins can mass email schedules
