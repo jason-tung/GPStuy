@@ -112,7 +112,7 @@ function find(a, b) {
 
     var s1 = document.getElementById("s1").value;
     var s2 = document.getElementById("s2").value;
-            same_floor = s1.substring(0,s1.length-2) == s2.substring(0,s2.length-2)
+            same_floor = s1.substring(0,s1.length-2) == s2.substring(0,s2.length-2);
 
             // for (var i = 0; i < floor1.length; i++) {
             //     for (var j = 0; j < floor1[0].length; j++) {
