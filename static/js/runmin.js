@@ -9,6 +9,7 @@
 var bodstr = `
     <svg id="vimage1" height="500" width="500" style="border: 1px solid;"></svg>
     <br>
+    <br>
     <svg id="vimage2" height="500" width="500" style="border: 1px solid;"></svg>
 `;
 
@@ -45,10 +46,9 @@ function do_stuff(maze, pic) {
             // console.log(c);
             c.setAttribute("height", 10);
             c.setAttribute("width", 10);
-            c.setAttribute("rx", 3);
             c.setAttribute("x", 10 * j);
             c.setAttribute("y", 10 * i);
-            c.setAttribute("stroke", "black");
+            c.setAttribute("stroke-opacity", "0");
             // console.log(maze[i][j]);
             // if (!maze[i][j]){
             //     console.log("FDSFDSF")
