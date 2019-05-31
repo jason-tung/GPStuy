@@ -118,9 +118,15 @@ function find(a, b) {
             console.log(maze);
             console.log(floor1);
             console.log(floor2);
-
-
-            same_floor = s1.substring(0,s1.length-2) == s2.substring(0,s2.length-2);
+            function strip_letters(questionText) {
+                return questionText.replace(/[A-Za-z]/g, '');
+            }
+            var t1 = strip_letters(s1);
+            var t2 = strip_letters(s2);
+            console.log("---+++++----");
+            console.log(t1);
+            console.log(t2);
+            same_floor = t1.substring(0,t1.length-2) == t2.substring(0,t2.length-2);
 
             // for (var i = 0; i < floor1.length; i++) {
             //     for (var j = 0; j < floor1[0].length; j++) {

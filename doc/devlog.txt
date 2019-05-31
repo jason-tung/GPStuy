@@ -164,3 +164,7 @@ jasonT -- 2019-05-30 1:55
 - take care of same floor maps displayhing twice
 - take care of error throwing on finding api
 ==============================================================
+jasonT -- 2019-05-31 12:55
+--------------------------------------------------------------
+- take care of case where theres a letter in the room
+==============================================================
