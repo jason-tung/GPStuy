@@ -6,12 +6,24 @@ Snitch Tung, WalkMax Lu, Jeffreezy Wusuk Lee, Ivan Z-hang
 ## GPStuy: For Noobs...
 
 ### Abstract:
-what is it about
+GPStuy is your personal navigator for Stuy. Input two rooms and we'll show you how to get there. Input your schedule and we'll map out your entire day. If you're an admin, you can mass email parents in preparation for Parent-Teacher Conferences.
 
 ### Dependencies: 
 Our dependencies, as listed in requirements.txt, are as follows:
 ```
-fix the requirements
+certifi==2019.3.9
+chardet==3.0.4
+click==6.7
+Flask==1.0.2
+idna==2.8
+itsdangerous==0.24
+Jinja2==2.10
+MarkupSafe==1.0
+pkg-resources==0.0.0
+pymongo==3.7.2
+requests==2.21.0
+urllib3==1.24.1
+Werkzeug==0.14.1
 ```
 
 Install our dependencies with the follow command in the root directory of our repo:
