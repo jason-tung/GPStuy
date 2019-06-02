@@ -168,3 +168,14 @@ jasonT -- 2019-05-31 12:55
 --------------------------------------------------------------
 - take care of case where theres a letter in the room
 ==============================================================
+williamL -- 2019-05-31 13:10
+--------------------------------------------------------------
+- changed map display to remove the border of the boxes
+==============================================================
+williamL -- 2019-06-02 12:30
+--------------------------------------------------------------
+- fixed search form position to be inside the container
+- added buttons on the schedule table that can set the values of the input fields
+  - added buttons.js
+- included bootstrap javascript to make the dropdown work
+==============================================================
