@@ -179,3 +179,9 @@ williamL -- 2019-06-02 12:30
   - added buttons.js
 - included bootstrap javascript to make the dropdown work
 ==============================================================
+williamL -- 2019-06-04 12:00
+--------------------------------------------------------------
+- fixed profile settings
+  - can now remove a class from your schedule
+- fixed bell schedule page to correctly display homeroom
+==============================================================

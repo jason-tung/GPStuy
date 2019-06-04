@@ -67,6 +67,16 @@ def insert_room(id, period, room):
     db.commit()
     db.close()
 
+def remove_room(id, period):
+    '''Given the user_id and period and room number, will update that period for the user'''
+    db = sqlite3.connect(DATABASE)
+    c = db.cursor()
+    command = "UPDATE user_info SET {p} = NULL WHERE id = {i};".format(p = period, i = id)
+    print(command)
+    c.execute(command)
+    db.commit()
+    db.close()
+
 def get_user_by_id(id):
     '''Gets name by int(ID)'''
     db = sqlite3.connect(DATABASE)

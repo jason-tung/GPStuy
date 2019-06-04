@@ -117,7 +117,9 @@ def schedule_updater():
 
         for period in _periods:
             room = request.form.get(period)
-            if room != "":
+            if room == "":
+                db_create.remove_room(id, period)
+            else:
                 try:
                     room = int(room)
                 except ValueError:
@@ -127,7 +129,8 @@ def schedule_updater():
 
         student_periods = db_create.get_periods_from_id(id)
         flash("Successfully updated rooms.")
-        return render_template("profile.html", name = _name, periods = student_periods)
+        # return render_template("profile.html", name = _name, periods = student_periods)
+        return redirect("/profile")
     except KeyError:
         flash("You are not logged in.")
         return redirect(url_for("home"))
@@ -159,10 +162,7 @@ def bell_schedule():
 
         converted_periods.append((start, end))
 
-    try:
-        return render_template("bell_schedule.html", name = db_create.get_user_by_id(session['id']), option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day, day_info = day_type)
-    except KeyError:
-        return render_template("bell_schedule.html", option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day, day_info = day_type)
+    return render_template("bell_schedule.html", option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day, day_info = day_type)
 
 # @app.route('/admin_features')
 # def admin_features(): #Send mass emails, upload layouts of schools, see list of students, edit students schedules (i.e. change room number and teacher name)

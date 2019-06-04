@@ -21,7 +21,7 @@
         {% for num in range(10) %}
           <tr>
             <th scope="row">{{num+1}}</th>
-              <td><input type="text" name="{{'period' + (num + 1)|string}}" placeholder = "{{periods[num]}}" class="form-control"></td>
+              <td><input type="text" name="{{'period' + (num + 1)|string}}" {% if periods[num] %} value="{{periods[num]}}" {% endif %} class="form-control"></td>
           </tr>
         {% endfor %}
       </tbody>

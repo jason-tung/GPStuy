@@ -27,29 +27,80 @@
             </tr>
           </thead>
           <tbody>
-            {% for num in range(10) %}
+            {% if option == 'HOMEROOM' %}
+
+              {% for num in range(3) %}
+                {% if "-1" + num|string == current_period %}
+                <tr bgcolor="#FF0000">
+                  <th scope="row">{{num+1}} Walking Time</th>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% endif %}
+
+                <tr {% if num == current_period %} bgcolor="#FFFF00" {% endif %}>
+
+                  <th scope="row">{{num+1}}</th>
+                    <td>{{periods[num][0]}}</td>
+                    <td>{{periods[num][1]}}</td>
+                </tr>
+              {% endfor %}
+
               {% if "-1" + num|string == current_period %}
               <tr bgcolor="#FF0000">
-                <th scope="row">{{num+1}} Walking Time</th>
+                <th scope="row">Homeroom Walking Time</th>
                   <td></td>
                   <td></td>
               </tr>
               {% endif %}
-              {% if num == current_period %}
-              <tr bgcolor="#FFFF00">
-              {% else %}
-              <tr>
-              {% endif %}
-                <th scope="row">{{num+1}}</th>
-                  <td>{{periods[num][0]}}</td>
-                  <td>{{periods[num][1]}}</td>
+
+              <tr {% if num == current_period %} bgcolor="#FFFF00" {% endif %}>
+
+                <th scope="row">Homeroom</th>
+                  <td>{{periods[3][0]}}</td>
+                  <td>{{periods[3][1]}}</td>
               </tr>
-            {% endfor %}
-              {% if current_period == -2 or  current_period == -3 %}
-              <tr bgcolor="#FFFF00">
-              {% else %}
-              <tr>
-              {% endif %}
+
+              {% for num in range(4, 11) %}
+                {% if "-1" + num|string == current_period %}
+                <tr bgcolor="#FF0000">
+                  <th scope="row">{{num}} Walking Time</th>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% endif %}
+
+                <tr {% if num == current_period %} bgcolor="#FFFF00" {% endif %}>
+
+                  <th scope="row">{{num}}</th>
+                    <td>{{periods[num][0]}}</td>
+                    <td>{{periods[num][1]}}</td>
+                </tr>
+              {% endfor %}
+
+            {% else %}
+
+              {% for num in range(10) %}
+                {% if "-1" + num|string == current_period %}
+                <tr bgcolor="#FF0000">
+                  <th scope="row">{{num+1}} Walking Time</th>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% endif %}
+
+                <tr {% if num == current_period %} bgcolor="#FFFF00" {% endif %}>
+
+                  <th scope="row">{{num+1}}</th>
+                    <td>{{periods[num][0]}}</td>
+                    <td>{{periods[num][1]}}</td>
+                </tr>
+
+              {% endfor %}
+            {% endif %}
+
+              <tr {% if current_period == -2 or  current_period == -3 %} bgcolor="#FFFF00" {% endif %}>
+
                 <th scope="row">Non-School Time</th>
                   <td>{{buffer[0]}}</td>
                   <td>{{buffer[1]}}</td>
