@@ -124,7 +124,7 @@ def set_periods(num_period, start_time, period_length, walking_time):
 
         for i in range(num_period):
             if i == 3:
-                homeroom_time_delta = timedelta(minutes = 12) # Homeroom is 12 minutes long
+                homeroom_time_delta = timedelta(minutes = 15) # Homeroom is 12 minutes long
                 set_period(i, start_time, start_time + homeroom_time_delta, type)
                 start_time += homeroom_time_delta + time_delta_walk
                 continue
@@ -171,5 +171,5 @@ def get_end_time(period, type):
 def create_stuy_schedule():
     if not (REGULAR or HOMEROOM or CONFERENCE):
         set_periods(10, "8:00", 41, 5) # Sets Stuy Regular Schedule
-        set_periods(10, "8:00", 40, 5) # Sets Stuy Homeroom Schedule
+        set_periods(10, "8:00", 40, 4) # Sets Stuy Homeroom Schedule
         set_periods(10, "8:00", 37, 5) # Sets Stuy Conference Schedule

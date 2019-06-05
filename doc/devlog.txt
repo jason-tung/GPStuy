@@ -185,3 +185,8 @@ williamL -- 2019-06-04 12:00
   - can now remove a class from your schedule
 - fixed bell schedule page to correctly display homeroom
 ==============================================================
+williamL -- 2019-06-05 10:42
+--------------------------------------------------------------
+- fixed homeroom bell schedule
+  - now school ends correctly at 3:35 pm
+==============================================================
