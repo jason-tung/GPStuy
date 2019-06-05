@@ -161,9 +161,11 @@ def bell_schedule():
         end = str(p[1].hour) + ":" + end_minute + " AM" if p[1].hour/12 <= 1 else str(p[1].hour%12) + ":" + end_minute + " PM"
 
         converted_periods.append((start, end))
+    try:
+        return render_template("bell_schedule.html", name = db_create.get_user_by_id(session['id']), option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day, day_info = day_type)
 
-    return render_template("bell_schedule.html", option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day, day_info = day_type)
-
+    except KeyError:
+        return render_template("bell_schedule.html", option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day, day_info = day_type)
 # @app.route('/admin_features')
 # def admin_features(): #Send mass emails, upload layouts of schools, see list of students, edit students schedules (i.e. change room number and teacher name)
 #     return redirect(url_for("home"))
