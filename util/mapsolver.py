@@ -58,19 +58,21 @@ def solvemap(asciimap, loc1, loc2):
 
     # pprint(mapary)
 
-    def solve(row, col, depth):
-        nonlocal mapary
-        if mapary[row][col] == 'E':
+    def solve(row, col, depth, mappy):
+        # pprint(mappy)
+        # print("-+-+-")
+        # time.sleep(1)
+        if mappy[row][col] == 'E':
             return depth
         for dir in dirary:
             nrow = row + dir[0]
             ncol = col + dir[1]
-            if mapary[nrow][ncol] in " E":
-                if mapary[row][col] != "S":
-                    mapary[row][col] = "@"
-                solved = solve(nrow, ncol, depth + 1)
+            if mappy[nrow][ncol] in " E":
+                if mappy[row][col] != "S":
+                    mappy[row][col] = "@"
+                solved = solve(nrow, ncol, depth + 1, mappy[:])
                 if solved == -1:
-                    mapary[nrow][ncol] = "."
+                    mappy[nrow][ncol] = "."
                 else:
                     return solved
         return -1
@@ -79,7 +81,7 @@ def solvemap(asciimap, loc1, loc2):
     for x in range(len(mapary)):
         for y in range(len(mapary[x])):
             if mapary[x][y] == "S":
-                cost = solve(x, y, 0)
+                cost = solve(x, y, 0,mapary[:])
     return (mapary, cost)
 
 

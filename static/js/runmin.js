@@ -63,6 +63,9 @@ function do_stuff(maze, pic) {
                 case " ":
                     c.setAttribute("fill", "white");
                     break;
+                case "]":
+                    c.setAttribute("fill", "white");
+                    break;
                 case ".":
                     c.setAttribute("fill", "white");
                     break;
