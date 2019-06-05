@@ -106,7 +106,7 @@ function find(a, b) {
                 pic1.remove();
                 pic2.remove();
                 console.log("fail!!!!!!!!!!!!!");
-                rdiv.innerHTML = "hey invalid room(s)";
+                rdiv.innerHTML = "<h1> Invalid Room Number(s)! </h1>";
                 return;
             }
             console.log("DFSDKJFNDJKSNFKJDSJFKDSJKFDJSF");
