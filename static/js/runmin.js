@@ -151,6 +151,9 @@ function find(a, b) {
 
             do_stuff(floor1, pic1);
             do_stuff(floor2, pic2);
+            if (same_floor){
+                do_stuff(floor1, pic1);
+            }
 
         },
 
