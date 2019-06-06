@@ -198,3 +198,14 @@ ivanZ -- 2019-06-05 13:07
 --------------------------------------------------------------
 - fixed error message for map
 ==============================================================
+williamL -- 2019-06-05 23:40
+--------------------------------------------------------------
+- Donut_time made a layer-based web drawing app.
+  - Users have tools, including pencil, paintbrush, eraser, and filters, etc.
+  - Users can save their work by making an account or download it to their computer.
+- Generally speaking, they were successful.
+  - However, I do not understand what the layers are or how to interact with different layers.
+- Errors include that users cannot change the size of the canvas
+  - It's too small.
+- Kenny Li, Jiayang Chen, Dennis Chen, Johnson Li
+==============================================================
