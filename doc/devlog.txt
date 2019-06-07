@@ -212,4 +212,7 @@ williamL -- 2019-06-05 23:40
 jasonT -- 2019-06-06 21:40
 --------------------------------------------------------------
 - coming in clutch with the droplet fix
+- fixed all relative pathing
+- fixed some one time setups
+- i think i fixed a bug where it always logs you out.
 ==============================================================

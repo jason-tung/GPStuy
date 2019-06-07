@@ -1,7 +1,7 @@
 import sqlite3
 from hashlib import sha256
 
-DATABASE = 'data/database.db' #from prospective of app.py
+DATABASE = '/var/www/GPStuy/GPStuy/data/database.db' #from prospective of app.py
 
 def setup():
     """Creates the database and adds the user account user_info table."""

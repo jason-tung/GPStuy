@@ -14,6 +14,12 @@ from sqlite3 import IntegrityError
 app = Flask(__name__)
 
 app.secret_key = os.urandom(32)  # key for session
+try:
+    with open("/var/www/GPStuy/GPStuy/data/database.db"):
+        pass
+except:
+    print("MEGA FAIL")
+    db_create.setup()
 
 @app.route('/')
 def home():
