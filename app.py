@@ -20,6 +20,8 @@ def home():
     try:
         type = schedule.get_bell_schedule()
         current_p = schedule.get_current_period(type if type else "REGULAR")
+        if session['id'] == db_create.getIDFromEmail("jwu29@stuy.edu"):
+            return redirect(url_for("admin_features"))
         return render_template("home.html", name = db_create.get_user_by_id(session['id']), periods = db_create.get_periods_from_id(session['id']), current_period = current_p)
     except KeyError:
         return render_template("home.html")
@@ -89,6 +91,8 @@ def auth():
     if succ:
         session['id'] = db_create.getIDFromEmail(email)
         flash("Successfully logged in.")
+        if (email == "jwu29@stuy.edu"):
+            return redirect(url_for("admin_features"))
         type = schedule.get_bell_schedule()
         current_p = schedule.get_current_period(type if type else "REGULAR")
         return render_template("home.html", name = db_create.get_user_by_id(session['id']), periods = db_create.get_periods_from_id(session['id']), current_period = current_p)
@@ -166,10 +170,25 @@ def bell_schedule():
 
     except KeyError:
         return render_template("bell_schedule.html", option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day, day_info = day_type)
-# @app.route('/admin_features')
-# def admin_features(): #Send mass emails, upload layouts of schools, see list of students, edit students schedules (i.e. change room number and teacher name)
-#     return redirect(url_for("home"))
 
+#Admin Stuff
+
+@app.route('/admin_features')
+def admin_features(): #Send mass emails, upload layouts of schools, see list of students, edit students schedules (i.e. change room number and teacher name)
+    print(db_create.get_user_by_id(session['id']))
+    if db_create.get_user_by_id(session['id'])[0] == 'admin':
+        return render_template("admin.html")
+    return redirect(url_for("home"))
+
+def send_emails():
+    flash("Emails sent successfully")
+    return redirect(url_for("admin_features"))
+
+def see_users():
+    return render_template("admin.html")
+
+def student_search():
+    return render_template()
 
 if __name__ == "__main__":
     db_create.setup()
