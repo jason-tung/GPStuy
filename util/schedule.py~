@@ -36,7 +36,6 @@ def get_current_period(type):
     elif type == 'HOMEROOM':
         day = HOMEROOM
     
-    print("hi")
     print(day)
     if current_time < day[0][0]:
         return -2 # -2 if it is before school
