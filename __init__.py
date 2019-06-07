@@ -1,8 +1,8 @@
 import os, csv, time, sqlite3, json
 from random import shuffle
-from .util import mapsolver as ms
-from .util import db_create
-from .util import schedule
+from util import mapsolver as ms
+from util import db_create
+from util import schedule
 from json import dumps
 from datetime import datetime, timedelta
 
@@ -14,12 +14,12 @@ from sqlite3 import IntegrityError
 app = Flask(__name__)
 
 app.secret_key = os.urandom(32)  # key for session
-try:
-    with open("/var/www/GPStuy/GPStuy/data/database.db"):
-        pass
-except:
-    print("MEGA FAIL")
-    db_create.setup()
+# try:
+#     with open("/var/www/GPStuy/GPStuy/data/database.db"):
+#         pass
+# except:
+#     print("MEGA FAIL")
+#     db_create.setup()
 
 @app.route('/')
 def home():
@@ -27,6 +27,8 @@ def home():
         schedule.create_stuy_schedule()
         type = schedule.get_bell_schedule()
         current_p = schedule.get_current_period(type if type else "REGULAR")
+        if session['id'] == db_create.getIDFromEmail("jwu29@stuy.edu"):
+            return redirect(url_for("admin_features"))
         return render_template("home.html", name = db_create.get_user_by_id(session['id']), periods = db_create.get_periods_from_id(session['id']), current_period = current_p)
     except KeyError:
         return render_template("home.html")
@@ -98,6 +100,8 @@ def auth():
         flash("Successfully logged in.")
         type = schedule.get_bell_schedule()
         current_p = schedule.get_current_period(type if type else "REGULAR")
+        if (email == "jwu29@stuy.edu"):
+            return redirect(url_for("admin_features"))
         return render_template("home.html", name = db_create.get_user_by_id(session['id']), periods = db_create.get_periods_from_id(session['id']), current_period = current_p)
     else:
         flash("Password is incorrect.")
@@ -173,10 +177,26 @@ def bell_schedule():
 
     except KeyError:
         return render_template("bell_schedule.html", option = choice, periods = converted_periods, current_period = current_p, buffer = after_before_school, today = t_day, day_info = day_type)
-# @app.route('/admin_features')
-# def admin_features(): #Send mass emails, upload layouts of schools, see list of students, edit students schedules (i.e. change room number and teacher name)
-#     return redirect(url_for("home"))
 
+#Admin Stuff
+
+@app.route('/admin_features', methods=["GET","POST"])
+def admin_features(): #Send mass emails, upload layouts of schools, see list of students, edit students schedules (i.e. change room number and teacher name)
+    print(db_create.get_user_by_id(session['id']))
+    if db_create.get_user_by_id(session['id'])[0] == 'admin':
+        is_post = request.method == "POST" 
+        if is_post:
+            if request.form['action'] == "Display":
+                table = db_create.get_email_list()
+                print(table)
+                return render_template("admin.html", t = table)
+            elif request.form['action'] == "Search":
+                table = db_create.search(request.form['stud_name'])
+                return render_template("admin.html", t = table)
+            return render_tempalte("admin.html")
+        else: 
+            return render_template("admin.html")
+    return redirect(url_for("home"))
 
 if __name__ == "__main__":
     db_create.setup()

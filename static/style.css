@@ -1,0 +1,21 @@
+.table-fixed thead {
+    width: 100%;
+  }
+  .table-fixed td{
+      width:300px
+  }
+  .table-fixed th{
+      width:300px
+  }
+  .table-fixed tbody {
+    height: 230px;
+    overflow-y: auto;
+    overflow-x:auto;
+    width: 100%;
+  }
+
+  .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+    display: inline-block;
+
+  }
+  

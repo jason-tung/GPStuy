@@ -1,7 +1,7 @@
 import sqlite3
 from hashlib import sha256
 
-DATABASE = '/var/www/GPStuy/GPStuy/data/database.db' #from prospective of app.py
+DATABASE = 'data/database.db' #from prospective of app.py
 
 def setup():
     """Creates the database and adds the user account user_info table."""
@@ -33,14 +33,19 @@ def get_email_list():
     '''Returns the list of all emails.'''
     db = sqlite3.connect(DATABASE)
     c = db.cursor()
-    command = "SELECT email FROM user_info;"
+    command = "SELECT name,email FROM 'user_info' WHERE NOT email= 'jwu29@stuy.edu';"
     c.execute(command)
     output = c.fetchall()
     db.close()
-    user_list = []
-    for user in output:
-        user_list.append(user[0])
-    return user_list
+    return output
+
+def search(name):
+    db = sqlite3.connect(DATABASE)
+    c = db.cursor()
+    command = '''SELECT name,email FROM 'user_info' WHERE NOT email= 'jwu29@stuy.edu' 
+                AND name LIKE '%{}%' OR name LIKE '%{}%';'''.format(name,name)
+    c.execute(command)
+    output = c.fetchall()
 
 def get_periods_from_id(id):
     '''Returns a 10-length list of the student's classes (if none given, then None)'''
