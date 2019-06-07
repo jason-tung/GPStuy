@@ -1,8 +1,8 @@
 import os, csv, time, sqlite3, json
 from random import shuffle
-from util import mapsolver as ms
-from util import db_create
-from util import schedule
+from .util import mapsolver as ms
+from .util import db_create
+from .util import schedule
 from json import dumps
 from datetime import datetime, timedelta
 
