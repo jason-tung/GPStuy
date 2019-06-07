@@ -11,19 +11,12 @@ GPStuy is your personal navigator for Stuy. Input two rooms and we'll show you h
 ### Dependencies: 
 Our dependencies, as listed in requirements.txt, are as follows:
 ```
-certifi==2019.3.9
-chardet==3.0.4
-click==6.7
-Flask==1.0.2
-idna==2.8
-itsdangerous==0.24
-Jinja2==2.10
-MarkupSafe==1.0
-pkg-resources==0.0.0
-pymongo==3.7.2
-requests==2.21.0
-urllib3==1.24.1
-Werkzeug==0.14.1
+Click==7.0
+Flask==1.0.3
+itsdangerous==1.1.0
+Jinja2==2.10.1
+MarkupSafe==1.1.1
+Werkzeug==0.15.4
 ```
 
 Install our dependencies with the follow command in the root directory of our repo:
