@@ -2,6 +2,7 @@
 Snitch Tung, WalkMax Lu, Jeffreezy Wusuk Lee, Ivan Z-hang
 
 **[THE DEMO: WATCH HERE](https://youtu.be/aDT7_76wGsI)**
+
 **[Devlog](https://github.com/WilliamLu0211/GPStuy/blob/master/doc/devlog.txt)**
 
 ## GPStuy: For Noobs...
