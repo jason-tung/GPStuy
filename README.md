@@ -81,6 +81,8 @@ python app.py
    http://127.0.0.1:5000/
 
 ## Apache2 Launch Instructions
+
+
 1. SSH into droplet
 
 ```$ ssh <username>@<ip>```
@@ -101,6 +103,22 @@ $ sudo su
 
 ```
 $ touch <app>.wsgi
+```
+paste this into the wsgi
+```
+#!/usr/bin/python3
+
+import sys
+
+import logging
+
+logging.basicConfig(stream=sys.stderr)
+
+sys.path.insert(0,'/var/www/GPStuy/')
+
+
+
+from GPStuy import app as application 
 ```
 
 5. Clone via https
@@ -129,8 +147,29 @@ $ pip3 install -r requirements.txt
 ```
 $ cd ~/../../etc/apache2/sites-enabled/
 $ touch <app>.conf
+#fill out the conf with the code below. replace the ip as necessary.
 $ a2ensite <app>
 ```
+```
+<VirtualHost *:80>
+
+             ServerName <IP GOES HERE>
+             
+             WSGIScriptAlias / /var/www/GPStuy/GPStuy.wsgi
+             <Directory /var/www/GPStuy/GPStuy/>
+                        Order allow,deny
+                        Allow from all
+             </Directory>
+
+             Alias /static /var/www/GPStuy/GPStuy/static
+             <Directory /var/www/GPStuy/GPStuy/static/>
+                        Order allow,deny
+                        Allow from all
+              </Directory>
+
+</VirtualHost>
+```
+
 
 9. Reload and restart apache2
 
