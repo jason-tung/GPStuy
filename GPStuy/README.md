@@ -1,6 +1,8 @@
 # team GPStuy <img src="https://d1lss44hh2trtw.cloudfront.net/assets/article/2015/07/06/Azrael_Returns_feature.jpg" height="40">
 Snitch Tung, WalkMax Lu, Jeffreezy Wusuk Lee, Ivan Z-hang
 
+**[THE DEMO: WATCH HERE](https://youtu.be/aDT7_76wGsI)**
+
 **[Devlog](https://github.com/WilliamLu0211/GPStuy/blob/master/doc/devlog.txt)**
 
 ## GPStuy: For Noobs...
