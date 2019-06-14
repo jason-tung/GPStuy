@@ -14,7 +14,7 @@ from sqlite3 import IntegrityError
 app = Flask(__name__)
 
 app.secret_key = os.urandom(32)  # key for session
-if not os.path.isfile("/var/www/GPStuy/GPStuy/data/database.db"):
+if not os.path.isfile("/var/www/gpstuy/gpstuy/data/database.db"):
     db_create.setup()
 
 

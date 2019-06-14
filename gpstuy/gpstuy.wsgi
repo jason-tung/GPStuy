@@ -6,9 +6,9 @@ import logging
 
 logging.basicConfig(stream=sys.stderr)
 
-sys.path.insert(0,'/var/www/GPStuy/')
+sys.path.insert(0,'/var/www/gpstuy/')
 
 
 
-from GPStuy import app as application 
+from gpstuy import app as application 
 
