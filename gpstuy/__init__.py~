@@ -14,12 +14,8 @@ from sqlite3 import IntegrityError
 app = Flask(__name__)
 
 app.secret_key = os.urandom(32)  # key for session
-# try:
-#     with open("/var/www/GPStuy/GPStuy/data/database.db"):
-#         pass
-# except:
-#     print("MEGA FAIL")
-#     db_create.setup()
+if not os.path.isfile("data/database.db"):
+    db_create.setup()
 
 
 schedule.create_stuy_schedule()
@@ -138,29 +134,24 @@ def schedule_updater():
     try:
         id = session['id']
         _name = db_create.get_user_by_id(id)
-
-        _periods = ["period1", "period2", "period3", "period4", "period5", "period6", "period7", "period8", "period9",
-                    "period10"]
-
-        for period in _periods:
-            room = request.form.get(period)
-            if room == "":
-                db_create.remove_room(id, period)
-            else:
-                try:
-                    room = int(room)
-                except ValueError:
-                    room = "'" + room + "'"
-                db_create.insert_room(id, period, room)
-
-        student_periods = db_create.get_periods_from_id(id)
-        flash("Successfully updated rooms.")
-        # return render_template("profile.html", name = _name, periods = student_periods)
-        return redirect("/profile")
     except KeyError:
-        flash("You are not logged in.")
+        flash("You are not logged in!!!")
         return redirect(url_for("home"))
 
+    _periods = ["period1", "period2", "period3", "period4", "period5", "period6", "period7", "period8", "period9",
+                    "period10"]
+    for period in _periods:
+        room = request.form.get(period)
+        if room == "":
+            db_create.remove_room(id, period)
+        else:
+            room = "'{0}'".format(room)
+            db_create.insert_room(id, period, room)
+
+    student_periods = db_create.get_periods_from_id(id)
+    flash("Successfully updated rooms.")
+    # return render_template("profile.html", name = _name, periods = student_periods)
+    return redirect("/profile")
 
 @app.route('/bell_schedule', methods=["GET", "POST"])
 def bell_schedule():

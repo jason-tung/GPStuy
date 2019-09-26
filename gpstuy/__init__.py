@@ -1,8 +1,8 @@
 import os, csv, time, sqlite3, json
 from random import shuffle
-from .util import mapsolver as ms
-from .util import db_create
-from .util import schedule
+from util import mapsolver as ms
+from util import db_create
+from util import schedule
 from json import dumps
 from datetime import datetime, timedelta
 
@@ -14,7 +14,7 @@ from sqlite3 import IntegrityError
 app = Flask(__name__)
 
 app.secret_key = os.urandom(32)  # key for session
-if not os.path.isfile("/var/www/gpstuy/gpstuy/data/database.db"):
+if not os.path.isfile("data/database.db"):
     db_create.setup()
 
 
@@ -42,7 +42,7 @@ def api_path():
     a = request.args['loc1']
     b = request.args['loc2']
     pairpath = ms.path(a, b)
-    # print(pairpath)
+    print(pairpath)
     try:
         return dumps(pairpath)
     except:
